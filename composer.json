@@ -65,12 +65,12 @@
             "@php artisan key:generate --ansi"
         ],
         "seed-production":[
-            "@php artisan db:seed --class= RoleSeeder",
-            "@php artisan db:seed --class= MajorSeeder",
-            "@php artisan db:seed --class= ClassSeeder",
-            "@php artisan db:seed --class= UserSeeder",
-            "@php artisan db:seed --class= StudentSeeder",
-            "@php artisan db:seed --class= GuardSeeder"
+            "@php artisan db:seed --class=RoleSeeder",
+            "@php artisan db:seed --class=MajorSeeder",
+            "@php artisan db:seed --class=ClassSeeder",
+            "@php artisan db:seed --class=UserSeeder",
+            "@php artisan db:seed --class=StudentSeeder",
+            "@php artisan db:seed --class=GuardSeeder"
             
         ]
     }
