@@ -63,6 +63,9 @@
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
+        ],
+        "seed-production":[
+            "@php artisan db:seed --class=[\" RoleSeeder\",\"MajorSeeder\",\"ClassSeeder\",\"UserSeeder\",\" StudentSeeder \",\" GuardSeeder \"]"
         ]
     }
 }
