@@ -10,4 +10,13 @@ class Classes extends Model
     use HasFactory;
     protected $tables = 'classes';
     protected $guarded = [];
+    
+    public function students()
+    {
+        return $this->hasMany(Student::class,'class_id');
+    }
+    public function major()
+    {
+        return $this->belongsTo(Major::class);
+    }
 }
