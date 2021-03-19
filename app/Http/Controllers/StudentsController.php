@@ -106,6 +106,8 @@ class StudentsController extends Controller
         ]);
         $userModel = new User;
         $userModel->updateStudent($student,$request);
+        return redirect()->back()->with('successMesage','Student was Successfuly Updated');
+
         // dd($request);
     }
 
@@ -117,6 +119,15 @@ class StudentsController extends Controller
      */
     public function destroy(Student $student)
     {
-        //
+        $this->validate(request(),[
+            'nis'=>'required'
+        ]);
+        if ((int)request()->nis !== $student->nis) {
+            return redirect()->back()->withInput()->withErrors(['nis'=>'nis you entered is wrong']);
+        }
+        // dd('mantap');
+        $student->user()->delete();
+        return redirect()->back()->with('successMesage','Student was Successfuly Deleted');
+        // $student->user->delete();
     }
 }

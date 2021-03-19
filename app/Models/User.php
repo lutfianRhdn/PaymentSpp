@@ -123,7 +123,6 @@ class User extends Authenticatable
             $student->user->profile_photo_path = $photo;
             $student->user()->save();
         }
-        dd('ok');
         return $student;
     }
 }

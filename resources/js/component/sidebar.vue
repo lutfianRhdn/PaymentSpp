@@ -22,19 +22,19 @@
                         <div class=" mb-5 ">
                             <dropdown-component widthClass="w-full" > 
                                 <template #trigger>
-                                    <div class="px-4 py-2 my-3 booder-l border-green-500 border-l-4 py-1 hover:bg-gray-200 hover:shadow">
-                                        <h1 class="text-xl"> <span class="font-bold"> User </span> Management</h1>
+                                    <div class="px-4 py-2  hover:bg-gray-200 hover:shadow" :class="{'booder-l border-green-500 border-l-4 ' : activeTab == 'students'|| 'officers'}">
+                                        <h1 class="text-xl"> <i class="lni lni-users"></i> User  Management</h1>
                                     </div>
                                 </template>
                                 <template #content >
-                                    <div>
-                                        <inertia-link :href="route('students.index')">Student Management </inertia-link>
-                                        <inertia-link :href="route('officers.index')" class=" line-through">Officer Management </inertia-link>
+                                    <div class="ml-5">
+                                        <inertia-link :href="route('students.index')" class="block text-lg" @click="updateMenu" >Student Management </inertia-link>
+                                        <inertia-link :href="route('officers.index')" class=" line-through"  >Officer Management </inertia-link>
                                     </div>
                                 </template>
                             </dropdown-component>
                             <!-- <hr> -->
-                           <div class="px-4 py-2 my-3 py-1 hover:bg-gray-200 hover:shadow">
+                           <div class="px-4 py-2 hover:bg-gray-200 hover:shadow">
                                         <h1 class="text-xl"> <span class="font-bold"> User </span> Management</h1>
                                     </div>
                           
@@ -55,7 +55,7 @@
 </template>
 
 <script>
-import DropdownComponent from '@/JetStream/Dropdown'
+import DropdownComponent from '@/component/dropdownComponent'
     export default {
         components:{
             DropdownComponent
@@ -72,13 +72,19 @@ import DropdownComponent from '@/JetStream/Dropdown'
             return {
                 open: true,
                 dimmer: false,
-                right: false
+                right: false,
+                activeTab:'dashboardasd'
             };
         },
         methods: {
             toggle() {
                 this.open = !this.open;
-            }
+            },
+            updateMenu (event) {
+                var str = event.target.toString();
+                this.activeTab = str.substr(str.lastIndexOf('/') + 1);
+                
+}
         }
     };
 
