@@ -29,7 +29,7 @@
                                 <template #content >
                                     <div>
                                         <inertia-link :href="route('students.index')">Student Management </inertia-link>
-                                        <inertia-link :href="route('officer.index')">Officer Management </inertia-link>
+                                        <inertia-link :href="route('officers.index')" class=" line-through">Officer Management </inertia-link>
                                     </div>
                                 </template>
                             </dropdown-component>
@@ -39,7 +39,7 @@
                                     </div>
                           
                         </div>
-                       
+                
                     </div>
                 </div>
             </div>
