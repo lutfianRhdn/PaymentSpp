@@ -5,9 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use App\Models\Classes;
-use App\Models\Student;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class StudentsController extends Controller
