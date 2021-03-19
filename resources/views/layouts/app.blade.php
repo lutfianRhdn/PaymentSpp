@@ -25,19 +25,29 @@
 <body class="font-sans antialiased">
     <x-jet-banner />
     <div class="min-h-screen bg-gray-100 md:flex ">
-        <div class="md:flex flex-col md:flex-row w-full ">
-            <div class="fixed">
+        <div class="md:flex flex-col md:flex-row w-full relative ">
+            <div class="fixed z-10">
                 @livewire('sidebar')
             </div>
-            <div class=" md:w-3/4 md:ml-auto">
-                <div class="hidden md:flex justify-between mx-5 mt-4  ">
-                    <h1 >Dashboard</h1>
-                    @livewire('profile-button')
+            <div class=" w-full md:ml-auto  ">
+
+                <div class=" bg-green-300 h-64   ">
+                    <div class="hidden md:flex">
+
+                        <div class="flex justify-between px-5 pt-4 z-10 w-full ">
+                            <header class="z-10 ml-72">
+                                {{ $header }}
+                            </header>
+                            @livewire('profile-button')
+                        </div>
+                    </div>
                 </div>
-                <main class="container w-full md:pt-0 sm:pt-20">
-                    {!!$slot!!}
-                </main>
-            </div>
+                    <main class="container w-full md:pt-0   sm:pt-20">
+<div class="mx-auto ">
+    {!!$slot!!}
+</div>
+                    </main>
+                </div>
         </div>
 
     </div>

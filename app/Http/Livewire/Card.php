@@ -8,6 +8,7 @@ class Card extends Component
 {
     public function render()
     {
-        return view('livewire.card');
+        // dd($this->content);
+        return view('livewire.card')->extends('layouts.test')->section('content');
     }
 }

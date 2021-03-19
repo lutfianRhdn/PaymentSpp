@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Classes;
 use App\Models\Student;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -29,7 +30,8 @@ class StudentFactory extends Factory
             'user_id'=>$user->id,
             'nis'=>rand(11111111,99999999),
             'phone'=>  $this->faker->e164PhoneNumber,
-            'address'=>$this->faker->address
+            'address'=>$this->faker->address,
+            'class_id'=> Classes::all()->random()->id
         ];
     }
 }
