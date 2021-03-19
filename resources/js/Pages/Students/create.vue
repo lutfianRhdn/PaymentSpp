@@ -96,8 +96,13 @@
 
                             <div class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6 shadow sm:rounded-bl-md sm:rounded-br-md"
                                 >
-                                            
-                            <button-component type="submit" class="bg-blue-400 hover:bg-blue-600">Submit</button-component>
+                                <action-message :on="form.recentlySuccessful" class="mr-3">
+                                    Saved.
+                                </action-message>
+
+                                <button-component type="submit" class="bg-blue-400 hover:bg-blue-600"
+                                :class="{ 'opacity-25 rounded-md': form.processing }" :disabled="form.processing"
+                                >Submit</button-component>
 
                             </div>
                         </form>
@@ -117,6 +122,7 @@
     import ButtonComponent from '@/Jetstream/Button'
 import InputError from '../../Jetstream/InputError.vue'
 // import Select2 from 'v-select2-component';
+import ActionMessage from '@/Jetstream/ActionMessage'
 
     export default {
         components: {
@@ -127,6 +133,7 @@ import InputError from '../../Jetstream/InputError.vue'
             ButtonComponent,
                 InputComponent,
                 InputError,
+                ActionMessage,
             // Select2
         },
         props:['errors','classes'],
@@ -177,6 +184,8 @@ import InputError from '../../Jetstream/InputError.vue'
                 this.$inertia.delete(route('current-user-photo.destroy'), {
                     preserveScroll: true,
                     onSuccess: () => (this.photoPreview = null),
+                    // onError: () => this.$refs.password.focus(),
+                    onFinish: () => this.form.reset(),
                 });
             },
         },

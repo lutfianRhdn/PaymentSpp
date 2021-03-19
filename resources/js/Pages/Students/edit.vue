@@ -96,9 +96,10 @@
 
                             <div class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6 shadow sm:rounded-bl-md sm:rounded-br-md"
                                 >
-                                            
-                            <button-component type="submit" class="bg-blue-400 hover:bg-blue-600">Submit</button-component>
-
+                            <action-message :on="form.recentlySuccessful" class="mr-3">
+                                Updated.
+                            </action-message>           
+                            <button-component type="submit" bg="bg-green-400 hover:bg-green-600">Update</button-component>
                             </div>
                         </form>
                     </card>
@@ -116,6 +117,8 @@
     import JetSecondaryButton from '@/Jetstream/SecondaryButton'
     import ButtonComponent from '@/Jetstream/Button'
 import InputError from '../../Jetstream/InputError.vue'
+import ActionMessage from '@/Jetstream/ActionMessage'
+
 // import Select2 from 'v-select2-component';
 
     export default {
@@ -127,6 +130,7 @@ import InputError from '../../Jetstream/InputError.vue'
             ButtonComponent,
                 InputComponent,
                 InputError,
+                ActionMessage,
             // Select2
         },
         props:['errors','classes','student'],
@@ -177,6 +181,7 @@ import InputError from '../../Jetstream/InputError.vue'
                 this.$inertia.delete(route('current-user-photo.destroy'), {
                     preserveScroll: true,
                     onSuccess: () => (this.photoPreview = null),
+
                 });
             },
         },
