@@ -20,7 +20,7 @@
         "laravel/tinker": "^2.5",
         "livewire/livewire": "^2.0",
         "spatie/laravel-permission": "^4.0",
-        "fakerphp/faker": "^1.9.1"
+        "fakerphp/faker": "^1.9.1",
         "tightenco/ziggy": "^1.0"
     },
     "require-dev": {
