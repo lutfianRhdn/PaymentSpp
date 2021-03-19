@@ -7,6 +7,7 @@
         "watch-poll": "mix watch -- --watch-options-poll=1000",
         "hot": "mix watch --hot",
         "prod": "npm run production",
+        "postinstall": "npm run prod",
         "production": "mix --production"
     },
     "devDependencies": {
@@ -34,5 +35,6 @@
         "v-select2-component": "^0.4.7",
         "vue-select": "^2.5.0",
         "vue-select2": "^0.2.6"
+        
     }
 }
