@@ -29,7 +29,7 @@
                                 <template #content >
                                     <div class="ml-5">
                                         <inertia-link :href="route('students.index')" class="block text-lg" @click="updateMenu" >Student Management </inertia-link>
-                                        <inertia-link :href="route('guards.index')" class=" line-through"  >Officer Management </inertia-link>
+                                        <inertia-link :href="route('guards.index')" class=""  >Officer Management </inertia-link>
                                     </div>
                                 </template>
                             </dropdown-component>
