@@ -102,6 +102,26 @@ class User extends Authenticatable
         Mail::to($user->email)->send(new SendInfoUserMail($user,$password));
         return $user;
     }
+    public function createOfficer($data)
+    {
+        $password = Str::random(8);
+        $user = User::create([
+            'name' => $data->name,
+            'email' => $data->email,
+            'password' => Hash::make($password),
+            'remember_token' => Str::random(10)
+        ]);
+        $user->assignRole('guard');
+        $user->officer()->create();
+        if ($data->photo) {
+
+            $photo = Storage::put('/public/profile-photos', $data->photo);
+            $user->profile_photo_path = $photo;
+            $user->save();
+        }
+        Mail::to($user->email)->send(new SendInfoUserMail($user,$password));
+        return $user;
+    }
     public function updateStudent($student,$data)
     {
         $password = Str::random(8);
@@ -124,5 +144,19 @@ class User extends Authenticatable
             $student->user()->save();
         }
         return $student;
+    }
+    public function updateOfficer($officer,$data)
+    {
+            $officer->user()->update([
+                'name' => $data->name,
+                'email' => $data->email,
+            ]);
+            if ($data->photo) {
+
+            $photo = Storage::put('/public/profile-photos', $data->photo);
+            $officer->user->profile_photo_path = $photo;
+            $officer->user()->save();
+        }
+        return $officer ;
     }
 }

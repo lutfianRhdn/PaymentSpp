@@ -20,7 +20,7 @@ class StudentSeeder extends Seeder
         Student::create([
             'user_id'=> $user->id,
             'nis'=>rand(11111111,99999999),
-            'nisn'=> rand(11111111,99999999),
+        'nisn'=> rand(11111111,99999999),
             'phone'=> '0895384292459',
             'address'=>'indonesia',
             'class_id'=> Classes::all()->random()->first()->id
