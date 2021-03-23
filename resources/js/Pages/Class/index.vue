@@ -66,12 +66,12 @@
                     Are you sure you want to delete this class? Once class is deleted, all of its resources and data will be permanently deleted. Please enter this Class Name ({{ modal.classs.level }} {{ modal.major.label }} {{ modal.classs.label }}) to confirm deleting <b>{{ modal.classs.level }} {{ modal.major.label }} {{ modal.classs.label }}</b>.
 
                     <div class="mt-4">
-                        <input-component type="text" class="mt-1 block w-3/4" placeholder="email..."
+                        <input-component type="text" class="mt-1 block w-3/4" placeholder="xii Rpl 2..."
                                     ref="password"
-                                    v-model="form.calss"
+                                    v-model="form.className"
                                      />
 
-                        <input-error :message="form.errors.class" class="mt-2" />
+                        <input-error :message="form.errors.className" class="mt-2" />
                     </div>
                 </template>
 
@@ -142,7 +142,8 @@ import InputError from '@/Jetstream/InputError'
                 this.isShow = false
             },
                 deleteUser() {
-                this.form.delete(route('classes.destroy',this.form.class), {
+                    console.log(this.form.classs)
+                this.form.delete(route('classes.destroy',this.form.classs,this.form.className), {
                     preserveScroll: true,
                     onSuccess: () => this.closeModal(),
                     onError: () => this.$refs.password.focus(),

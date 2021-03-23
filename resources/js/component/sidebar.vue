@@ -34,9 +34,11 @@
                                 </template>
                             </dropdown-component>
                             <!-- <hr> -->
-                           <div class="px-4 py-2 hover:bg-gray-200 hover:shadow">
-                                        <h1 class="text-xl"> <span class="font-bold"> User </span> Management</h1>
-                                    </div>
+                            <inertia-link :href="route('classes.index')">
+                                <div class="px-4 py-2 hover:bg-gray-200 hover:shadow" :class="{'booder-l border-green-500 border-l-4 ' : activeTab == 'class'}">
+                                    <h1 class="text-xl"> <i class="lni lni-home"></i> Class Management</h1>
+                                </div>
+                            </inertia-link>
                           
                         </div>
                 

@@ -19,4 +19,21 @@ class Classes extends Model
     {
         return $this->belongsTo(Major::class);
     }
+    public function createClass($data)
+    {
+        return Classes::create([
+            'level'=>$data->level,
+            'major_id'=>$data->major,
+            'label'=>$data->label
+        ]);
+    }
+    public function updateClass($data,$class)
+    {
+        return $class->update([
+            'level'=>$data->level,
+            'major_id'=>$data->major,
+            'label'=>$data->label
+        ]);
+    }
+
 }

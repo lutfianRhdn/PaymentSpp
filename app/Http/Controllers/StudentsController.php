@@ -125,9 +125,7 @@ class StudentsController extends Controller
         if ((int)request()->nis !== $student->nis) {
             return redirect()->back()->withInput()->withErrors(['nis'=>'nis you entered is wrong']);
         }
-        // dd('mantap');
         $student->user()->delete();
         return redirect()->back()->with('successMesage','Student was Successfuly Deleted');
-        // $student->user->delete();
     }
 }
