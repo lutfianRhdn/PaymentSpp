@@ -12,6 +12,7 @@
                             <template #header>
                                 <th class="py-3">#</th>
                                 <th class="py-3">Name</th>
+                                <th class="py-3">Major</th>
                                 <th class="py-3">Students Count</th>
                                 <th class="py-3">Action</th>
                             </template>
@@ -26,17 +27,20 @@
                                         <p class="font-medium text-center">{{ classs.level }} {{ classs.major.label }} {{ classs.label }} </p>
                                     </td>
                                     <td class="py-3 px-6 text-center whitespace-nowrap">
+                                        <p class="font-medium text-center">{{ classs.major.name }}</p>
+                                    </td>
+                                    <td class="py-3 px-6 text-center whitespace-nowrap">
                                         <p class="font-medium text-center">{{ classs.studentsTotal }}</p>
                                     </td>
                                 
                                     <td
                                         class="py-3 px-6 text-center whitespace-nowrap flex items-center justify-around">
-                                        <inertia-link :href="route('classes.show',classs.id)">
+                                        <!-- <inertia-link :href="route('classes.show',classs.id)">
                                             <button-component type="button"
                                                 class="rounded-full bg-blue-500 hover:bg-blue-700">
                                                 <i class="lni lni-list"></i>
                                             </button-component>
-                                        </inertia-link>
+                                        </inertia-link> -->
                                         <inertia-link :href="route('classes.edit',classs.id)">
                                         <button-component type="button"
                                             class="rounded-full " bg="bg-yellow-500 hover:bg-yellow-700">

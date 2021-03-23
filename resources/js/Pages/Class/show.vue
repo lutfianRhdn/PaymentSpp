@@ -1,17 +1,17 @@
 <template>
   <app-layout>
         <template #header>
-        <h1>guard Managemnet</h1>
+        <h1>class Managemnet</h1>
         </template>
             <div class="">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-xl w-4/5 mx-auto rounded-lg">
                     <card title="Show Student " > 
                         <div class="mx-10 flex mb-5 my-5">
-                            <img v-bind:src="guard.user.profile_photo_path == null ? guard.user.profile_photo_url+'&size=512' : '' " class="w-1/4 shadow-lg" :alt=" guard.user.name">
+                            <!-- <img v-bind:src="class.user.profile_photo_path == null ? class.user.profile_photo_url+'&size=512' : '' " class="w-1/4 shadow-lg" :alt=" class.user.name"> -->
                             <div  class="mx-5">
-                                <h1 class="text-3xl font-bold uppercase">{{guard.user.name}}  <span class="font-normal"> | Officer </span></h1>
-                                <h2 class="text-xl capitalize font-thin	">{{ guard.user.email}}</h2>
+                                <h1 class="text-3xl font-bold uppercase">{{classes.level}} {{classes.major.label}} {{classes.label}}  <span class="font-normal"> {{ classes.major.name}} </span></h1>
+                                <h2 class="text-xl capitalize font-thin	"> Students Total{{ classes.major.name}}</h2>
                             </div>
                         </div>
                         <hr>
@@ -35,13 +35,13 @@
     export default {
         computed:{
             setFormatDate(date){
-                date = this.guard.user.created_at
+                date = this.classes.created_at
                 console.log('date',date);
                 console.log(moment(date));
                 return moment(date).format('D/M/Y ');
             }
         },
-        props:['guard'],
+        props:['classes'],
         components: {
             AppLayout,
             Card,

@@ -304,13 +304,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   computed: {
     setFormatDate: function setFormatDate(date) {
-      date = this.guard.user.created_at;
+      date = this.classes.created_at;
       console.log('date', date);
       console.log(moment__WEBPACK_IMPORTED_MODULE_2___default()(date));
       return moment__WEBPACK_IMPORTED_MODULE_2___default()(date).format('D/M/Y ');
     }
   },
-  props: ['guard'],
+  props: ['classes'],
   components: {
     AppLayout: _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__.default,
     Card: _Jetstream_Card__WEBPACK_IMPORTED_MODULE_1__.default,
@@ -1056,7 +1056,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 
-var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h1", null, "guard Managemnet", -1
+var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h1", null, "class Managemnet", -1
 /* HOISTED */
 );
 
@@ -1078,13 +1078,9 @@ var _hoisted_6 = {
 var _hoisted_7 = {
   "class": "text-3xl font-bold uppercase"
 };
-
-var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
+var _hoisted_8 = {
   "class": "font-normal"
-}, " | Officer ", -1
-/* HOISTED */
-);
-
+};
 var _hoisted_9 = {
   "class": "text-xl capitalize font-thin\t"
 };
@@ -1116,15 +1112,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         title: "Show Student "
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("img", {
-            src: $props.guard.user.profile_photo_path == null ? $props.guard.user.profile_photo_url + '&size=512' : '',
-            "class": "w-1/4 shadow-lg",
-            alt: $props.guard.user.name
-          }, null, 8
-          /* PROPS */
-          , ["src", "alt"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h1", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.guard.user.name) + " ", 1
+          return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <img v-bind:src=\"class.user.profile_photo_path == null ? class.user.profile_photo_url+'&size=512' : '' \" class=\"w-1/4 shadow-lg\" :alt=\" class.user.name\"> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h1", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.classes.level) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.classes.major.label) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.classes.label) + " ", 1
           /* TEXT */
-          ), _hoisted_8]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h2", _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.guard.user.email), 1
+          ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.classes.major.name), 1
+          /* TEXT */
+          )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h2", _hoisted_9, " Students Total" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.classes.major.name), 1
           /* TEXT */
           )])]), _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.setFormatDate), 1
           /* TEXT */
