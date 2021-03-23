@@ -19,11 +19,8 @@ class ClassController extends Controller
         $classes = Classes::with('students')->with('major')->paginate(5);
         $classesTemp =[];
         foreach ($classes as $class ) {
-            // $allClasses
              $class->studentsTotal = $class->students->count();
-            //  dd($class);
         }
-        // dd($classes);
         return Inertia::render('Class/index',compact('classes'));
     }
 

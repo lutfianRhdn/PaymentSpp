@@ -27,6 +27,7 @@ Route::middleware(['auth:sanctum','verified'])->prefix('admin')->group(function 
     Route::resource('students', \App\Http\Controllers\StudentsController::class);
     Route::resource('guards', \App\Http\Controllers\OfficerController::class);
     Route::resource('classes', \App\Http\Controllers\ClassController::class);
+    Route::resource('tuitions', \App\Http\Controllers\TuitionController::class);
 });
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return Inertia::render('Dashboard');

@@ -23,7 +23,7 @@
                             <dropdown-component widthClass="w-full" > 
                                 <template #trigger>
                                     <div class="px-4 py-2  hover:bg-gray-200 hover:shadow" :class="{'booder-l border-green-500 border-l-4 ' : activeTab == 'students'|| 'officers'}">
-                                        <h1 class="text-xl"> <i class="lni lni-users"></i> User  Management</h1>
+                                        <h1 class="text-xl"> <i class="fas fa-users"></i> User  Management</h1>
                                     </div>
                                 </template>
                                 <template #content >
@@ -36,7 +36,12 @@
                             <!-- <hr> -->
                             <inertia-link :href="route('classes.index')">
                                 <div class="px-4 py-2 hover:bg-gray-200 hover:shadow" :class="{'booder-l border-green-500 border-l-4 ' : activeTab == 'class'}">
-                                    <h1 class="text-xl"> <i class="lni lni-home"></i> Class Management</h1>
+                                    <h1 class="text-xl"> <i class="fas fa-chalkboard-teacher"></i> Class Management</h1>
+                                </div>
+                            </inertia-link>
+                            <inertia-link :href="route('tuitions.index')">
+                                <div class="px-4 py-2 hover:bg-gray-200 hover:shadow" :class="{'booder-l border-green-500 border-l-4 ' : activeTab == 'class'}">
+                                    <h1 class="text-xl"> <i class="fas fa-money-bill-wave-alt"></i> Tuition Management</h1>
                                 </div>
                             </inertia-link>
                           
