@@ -7,8 +7,10 @@
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-xl w-4/5 mx-auto rounded-lg mb-10">
                     <card title="Student Management" createLink="students.create">
-                        <action-message> <h1>ok</h1> </action-message>
-                        <table-component  :paginationLinks="students.links">
+                        <action-message>
+                            <h1>ok</h1>
+                        </action-message>
+                        <table-component :paginationLinks="students.links">
                             <template #header>
                                 <th class="py-3">#</th>
                                 <th class="py-3">Nisn</th>
@@ -37,20 +39,18 @@
                                         <inertia-link :href="route('students.show',student.id)">
                                             <button-component type="button"
                                                 class="rounded-full bg-blue-500 hover:bg-blue-700">
-                                                <i class="lni lni-list"></i>
+                                                <i class="fas fa-list-ul"></i>
                                             </button-component>
                                         </inertia-link>
                                         <inertia-link :href="route('students.edit',student.id)">
-                                        <button-component type="button"
-                                            class="rounded-full " bg="bg-yellow-500 hover:bg-yellow-700">
-                                            <i class="lni lni-pencil"></i>
-                                        </button-component>
+                                            <button-component type="button" class="rounded-full "
+                                                bg="bg-yellow-500 hover:bg-yellow-700">
+                                                <i class="fas fa-edit"></i>
+                                            </button-component>
                                         </inertia-link>
-                                        <button-component type="button"
-                                        @click="showModal(student)"
-
+                                        <button-component type="button" @click="showModal(student)"
                                             class="rounded-full " bg="bg-red-500 hover:bg-red-700">
-                                            <i class="lni lni-trash"></i>
+                                            <i class="fas fa-trash-alt"></i>
                                         </button-component>
                                     </td>
                                 </tr>
@@ -62,31 +62,29 @@
         </div>
         <dialog-modal :show="isShow" @close="closeModal">
             <template #title>
-               <p>Delete User - <b> {{modal.user.name}}</b></p> 
+                <p>Delete User - <b> {{modal.user.name}}</b></p>
             </template>
 
-           <template #content>
-                    Are you sure you want to delete your account? Once your account is deleted, all of its resources and data will be permanently deleted. Please enter this Nisn ({{modal.student.nis}}) to confirm deleting <b>{{modal.user.name}}</b>.
+            <template #content>
+                Are you sure you want to delete your account? Once your account is deleted, all of its resources and
+                data will be permanently deleted. Please enter this Nisn ({{modal.student.nis}}) to confirm deleting
+                <b>{{modal.user.name}}</b>.
 
-                    <div class="mt-4">
-                        <input-component type="text" class="mt-1 block w-3/4" placeholder="nis..."
-                                    ref="password"
-                                    v-model="form.nis"
-                                     />
+                <div class="mt-4">
+                    <input-component type="text" class="mt-1 block w-3/4" placeholder="nis..." ref="password"
+                        v-model="form.nis" />
 
-                        <input-error :message="form.errors.nis" class="mt-2" />
-                    </div>
-                </template>
+                    <input-error :message="form.errors.nis" class="mt-2" />
+                </div>
+            </template>
 
             <template #footer>
                 <button-component bg="bg-gray-400" @click="closeModal">
                     Cancel
                 </button-component>
 
-                <button-component bg="bg-red-500 " class="ml-2 rounded-md" @click="deleteUser" 
-                :class="{ 'opacity-25 rounded-md': form.processing }" :disabled="form.processing"
-                
-                >
+                <button-component bg="bg-red-500 " class="ml-2 rounded-md" @click="deleteUser"
+                    :class="{ 'opacity-25 rounded-md': form.processing }" :disabled="form.processing">
                     Delete Student
                 </button-component>
             </template>
@@ -99,55 +97,55 @@
     import Card from '@/Jetstream/Card'
     import TableComponent from '@/component/TableComponent'
     import ButtonComponent from '@/Jetstream/Button'
-import ActionMessage from '@/Jetstream/ActionMessage.vue'
-import DialogModal from '@/Jetstream/DialogModal'
-import InputComponent from '../../Jetstream/Input.vue'
-import InputError from '@/Jetstream/InputError'
+    import ActionMessage from '@/Jetstream/ActionMessage.vue'
+    import DialogModal from '@/Jetstream/DialogModal'
+    import InputComponent from '../../Jetstream/Input.vue'
+    import InputError from '@/Jetstream/InputError'
 
     export default {
-        props: ['students','errors'],
+        props: ['students', 'errors'],
 
         components: {
             AppLayout,
             Card,
             TableComponent,
             ButtonComponent,
-                ActionMessage,
-                DialogModal,
-                InputComponent,
-                InputError
+            ActionMessage,
+            DialogModal,
+            InputComponent,
+            InputError
         },
-        data(){
-            return{
-                 form:this.$inertia.form( {
+        data() {
+            return {
+                form: this.$inertia.form({
                     _method: 'POST',
-                    student :[],
-                    nis:''
-                }),
-                isShow :false,
-                modal:{
                     student: [],
-                    user : []
+                    nis: ''
+                }),
+                isShow: false,
+                modal: {
+                    student: [],
+                    user: []
                 },
-                
-               
+
+
             }
         },
-        methods:{
-            showModal(student){
-                this.modal.student =  student
+        methods: {
+            showModal(student) {
+                this.modal.student = student
                 this.form.student = student
-                this.isShow =true
+                this.isShow = true
                 this.modal.user = student.user
             },
             closeModal() {
                 this.nameModal = ''
                 this.isShow = false
-                this.form.name =''
-                this.form.id =''
+                this.form.name = ''
+                this.form.id = ''
             },
-                deleteUser() {
-                this.form.delete(route('students.destroy',this.form.student), {
+            deleteUser() {
+                this.form.delete(route('students.destroy', this.form.student), {
                     preserveScroll: true,
                     onSuccess: () => this.closeModal(),
                     onError: () => this.$refs.password.focus(),
@@ -156,7 +154,7 @@ import InputError from '@/Jetstream/InputError'
                 })
             }
         }
-        
+
     }
 
 </script>

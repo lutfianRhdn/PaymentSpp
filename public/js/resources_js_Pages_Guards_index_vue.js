@@ -1562,19 +1562,19 @@ var _hoisted_16 = {
 };
 
 var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("i", {
-  "class": "lni lni-list"
+  "class": "fas fa-list-ul"
 }, null, -1
 /* HOISTED */
 );
 
 var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("i", {
-  "class": "lni lni-pencil"
+  "class": "fas fa-edit"
 }, null, -1
 /* HOISTED */
 );
 
 var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("i", {
-  "class": "lni lni-trash"
+  "class": "fas fa-trash-alt"
 }, null, -1
 /* HOISTED */
 );

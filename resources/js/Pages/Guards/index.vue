@@ -34,20 +34,20 @@
                                         <inertia-link :href="route('guards.show',guard.id)">
                                             <button-component type="button"
                                                 class="rounded-full bg-blue-500 hover:bg-blue-700">
-                                                <i class="lni lni-list"></i>
+                                                <i class="fas fa-list-ul"></i>
                                             </button-component>
                                         </inertia-link>
                                         <inertia-link :href="route('guards.edit',guard.id)">
                                         <button-component type="button"
                                             class="rounded-full " bg="bg-yellow-500 hover:bg-yellow-700">
-                                            <i class="lni lni-pencil"></i>
+                                                <i class="fas fa-edit"></i>
                                         </button-component>
                                         </inertia-link>
                                         <button-component type="button"
                                         @click="showModal(guard)"
 
                                             class="rounded-full " bg="bg-red-500 hover:bg-red-700">
-                                            <i class="lni lni-trash"></i>
+                                            <i class="fas fa-trash-alt"></i>
                                         </button-component>
                                     </td>
                                 </tr>

@@ -44,14 +44,14 @@
                                         <inertia-link :href="route('classes.edit',classs.id)">
                                         <button-component type="button"
                                             class="rounded-full " bg="bg-yellow-500 hover:bg-yellow-700">
-                                            <i class="lni lni-pencil"></i>
+                                                <i class="fas fa-edit"></i>
                                         </button-component>
                                         </inertia-link>
                                         <button-component type="button"
                                         @click="showModal(classs)"
 
                                             class="rounded-full " bg="bg-red-500 hover:bg-red-700">
-                                            <i class="lni lni-trash"></i>
+                                            <i class="fas fa-trash-alt"></i>
                                         </button-component>
                                     </td>
                                 </tr>
