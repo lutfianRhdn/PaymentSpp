@@ -19,6 +19,8 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             MajorSeeder::class,
             ClassSeeder::class,
+            PermissionSeeder::class,
+            SetPermissionToAllUser::class,
             ]);
         \App\Models\User::factory(20)->create()->each(function($user){
             $role= Role::all()->random();

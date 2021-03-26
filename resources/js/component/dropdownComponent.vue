@@ -2,8 +2,8 @@
     <div class="relative">
         <div @click="open = ! open" class="flex items-center">
             <slot name="trigger"></slot>
-            <i class="lni lni-chevron-down" v-show="!open"></i>
-            <i class="lni lni-chevron-up" v-show="open"></i>
+            <i class="fas fa-sort-down"  v-show="!open"></i>
+            <i class="fas fa-sort-up" v-show="open"></i>
         </div>
 
         <!-- Full Screen Dropdown Overlay -->

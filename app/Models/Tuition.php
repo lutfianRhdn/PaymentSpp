@@ -17,9 +17,16 @@ class Tuition extends Model
     }
     public function createTuition($data,$year)
     {
+        $now = Carbon::now();
+        $tuition = Tuition::where('year',$now->format('Y'))->first();
+        $year = $now->format('Y');
+        if ($tuition !== null) {
+            $this->year = Carbon::now()->format('Y')+1;
+            $year =$this->year; 
+        }
         return Tuition::create([
             'nominal'=>$data->nominal,
-            'year'=>Carbon::now()->format('Y')+1
+            'year'=>$year
         ]);
         
     }

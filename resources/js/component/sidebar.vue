@@ -20,9 +20,9 @@
                     </div>
                     <div>
                         <div class=" mb-5 ">
-                            <dropdown-component widthClass="w-full" > 
+                            <dropdown-component widthClass="w-full" v-if="$page.props.auth.can['user.index']"> 
                                 <template #trigger>
-                                    <div class="px-4 py-2  hover:bg-gray-200 hover:shadow" :class="{'booder-l border-green-500 border-l-4 ' : activeTab == 'students'|| 'officers'}">
+                                    <div class="px-4 py-2  my-3  hover:bg-gray-200 hover:shadow"     :class="{'active': $inertia.page.url.startsWith(href)}">
                                         <h1 class="text-xl"> <i class="fas fa-users"></i> User  Management</h1>
                                     </div>
                                 </template>
@@ -34,14 +34,19 @@
                                 </template>
                             </dropdown-component>
                             <!-- <hr> -->
-                            <inertia-link :href="route('classes.index')">
-                                <div class="px-4 py-2 hover:bg-gray-200 hover:shadow" :class="{'booder-l border-green-500 border-l-4 ' : activeTab == 'class'}">
+                            <inertia-link :href="route('classes.index')" v-if="$page.props.auth.can['class.index']">
+                                <div class="px-4 py-2  my-3 hover:bg-gray-200 hover:shadow" :class="{'booder-l border-green-500 border-l-4 ' : activeTab == 'class'}">
                                     <h1 class="text-xl"> <i class="fas fa-chalkboard-teacher"></i> Class Management</h1>
                                 </div>
                             </inertia-link>
-                            <inertia-link :href="route('tuitions.index')">
-                                <div class="px-4 py-2 hover:bg-gray-200 hover:shadow" :class="{'booder-l border-green-500 border-l-4 ' : activeTab == 'class'}">
+                            <inertia-link :href="route('tuitions.index')" v-if="$page.props.auth.can['tuition.index']">
+                                <div class="px-4 py-2  my-3 hover:bg-gray-200 hover:shadow" :class="{'booder-l border-green-500 border-l-4 ' : activeTab == 'class'}">
                                     <h1 class="text-xl"> <i class="fas fa-money-bill-wave-alt"></i> Tuition Management</h1>
+                                </div>
+                            </inertia-link>
+                            <inertia-link :href="route('payments.index')" v-if="$page.props.auth.can['payment.index']">
+                                <div class="px-4 py-2  my-3 hover:bg-gray-200 hover:shadow" :class="{'booder-l border-green-500 border-l-4 ' : activeTab == 'class'}">
+                                    <h1 class="text-xl"> <i class="fas fa-file-invoice-dollar"></i>Payments </h1>
                                 </div>
                             </inertia-link>
                           
@@ -73,6 +78,12 @@ import DropdownComponent from '@/component/dropdownComponent'
                 
             }else{
                 this.open =true
+            }
+        },
+        computed: {
+            active() {
+                alert(this.href)
+                return window.location.href.startsWith(this.href)
             }
         },
         data() {

@@ -32,8 +32,13 @@ class TuitionController extends Controller
      */
     public function create()
     {
-        $this->year = Carbon::now()->format('Y')+1;
-        $year =$this->year; 
+        $now = Carbon::now();
+        $tuition = Tuition::where('year',$now->format('Y'))->first();
+        $year = $now->format('Y');
+        if ($tuition !== null) {
+            $this->year = Carbon::now()->format('Y')+1;
+            $year =$this->year; 
+        }
         return Inertia::render('Tuitions/create',compact('year'));
     }
 
