@@ -75,6 +75,15 @@ class User extends Authenticatable
     {
         return $this->hasOne(Guard::class);
     }
+
+    public function getPermission()
+    {
+        return $this->getAllPermissions()->mapWithKeys(function($pr){
+            return [$pr['name'] => true];
+        });
+
+    }
+
     public function createStudent($data)
     {
         $password = Str::random(8);
