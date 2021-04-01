@@ -7,12 +7,11 @@
                 {{title}} 
             </div>
 
-            <button-component v-if="createLink !== undefined" @click="redirectToCreateLink" type="button">
+            <button-component v-if="createLink !== undefined && $page.props.auth.can[createPermission]" @click="redirectToCreateLink" type="button" >
                 Create New {{ title.split(" ")[0] }}
             </button-component>
         </div>
-
-        <div class="bg-grey-100  ">
+        <div class="bg-grey-100 overflow-y-auto md:overflow-y-hidden">
             <slot/>
         </div>
     </div>
@@ -27,6 +26,7 @@
         props: {
             createLink: String,
             title: String,
+            createPermission:String
         },
         components: {
             JetApplicationLogo,

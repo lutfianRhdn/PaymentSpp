@@ -21,13 +21,7 @@ class PaymentController extends Controller
 
     public function index()
     {
-        $payments = Payment::with('tuition')
-        ->with('student',function($q){
-            $q->with('user');
-        })->with('officer',function($q){
-            $q->with('user');
-        })->paginate(5);
-    //   dd($payments[0]->officer);
+        $payments = $this->filterPayment();
         return Inertia::render('Payments/index',compact('payments'));
     }
 
@@ -122,4 +116,25 @@ class PaymentController extends Controller
         // dd(collect($newStudents));
         return collect($newStudents);
     }
+
+    public function filterPayment()
+    {
+        $data = Payment::with('tuition')
+        ->with('student',function($q){
+            $q->with('user');
+        })->with('officer',function($q){
+            $q->with('user');
+        });
+        $result= [];
+        if (auth()->user()->hasRole('admin')) {
+            $result = $data;
+        }elseif (auth()->user()->hasRole('guard')) {
+            $result = $data->where('guard_id',auth()->user()->officer->id);
+        }else{
+            // dd(auth()->user()->student);
+            $result = $data->where('student_id',auth()->user()->student->id);
+        }
+        return $result->paginate(5);
+    }
+
 }

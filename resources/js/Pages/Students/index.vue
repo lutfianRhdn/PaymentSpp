@@ -6,7 +6,7 @@
         <div class="">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-xl w-4/5 mx-auto rounded-lg mb-10">
-                    <card title="Student Management" createLink="students.create">
+                    <card title="Student Management" createLink="students.create" createPermission="student.create">
                         <action-message>
                             <h1>ok</h1>
                         </action-message>

@@ -11,7 +11,7 @@
             </button>
 
             <!-- Sidebar Content -->
-            <div ref="content" class="transition-all duration-700 bg-white rounded-lg  shadow-lg   overflow-hidden flex  justify-center "
+            <div ref="content" class="transition-all duration-700 bg-white  shadow-lg   overflow-hidden flex  justify-center "
                 :class="[open ? 'md:max-w-lg' : 'max-w-0']">
 
                 <div class="w-64   py-3">
@@ -21,7 +21,7 @@
                     <div>
                         <div class=" mb-5 ">
                             <dropdown-component widthClass="w-full" v-if="$page.props.auth.can['user.index']"> 
-                                <template #trigger>
+                                <template #trigger>''
                                     <div class="px-4 py-2  my-3  hover:bg-gray-200 hover:shadow"     :class="{'active': $inertia.page.url.startsWith(href)}">
                                         <h1 class="text-xl"> <i class="fas fa-users"></i> User  Management</h1>
                                     </div>
