@@ -30,10 +30,11 @@ Route::middleware(['auth:sanctum','verified'])->group(function () {
         Route::resource('classes', \App\Http\Controllers\ClassController::class);
         Route::resource('tuitions', \App\Http\Controllers\TuitionController::class);
     });
+    Route::get('/dashboard',[App\Http\Controllers\DashboardController::class,'index'])->name('dashboard');
     Route::resource('payments', \App\Http\Controllers\PaymentController::class);
     Route::get('payments/getuser/{id}', [\App\Http\Controllers\PaymentController::class,'getUser'] )->name('payments.getUser');
 
 });
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->name('dashboard');
+// Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+//     return Inertia::render('Dashboard');
+// })->name('dashboard');

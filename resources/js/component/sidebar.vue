@@ -20,8 +20,13 @@
                     </div>
                     <div>
                         <div class=" mb-5 ">
+                             <inertia-link :href="route('dashboard')" >
+                                <div class="px-4 py-2  my-3 hover:bg-gray-200 hover:shadow" :class="{'booder-l border-green-500 border-l-4 ' : activeTab == 'class'}">
+                                    <h1 class="text-xl"><i class="fas fa-tachometer-alt"></i> Dashboard</h1>
+                                </div>
+                            </inertia-link>
                             <dropdown-component widthClass="w-full" v-if="$page.props.auth.can['user.index']"> 
-                                <template #trigger>''
+                                <template #trigger>
                                     <div class="px-4 py-2  my-3  hover:bg-gray-200 hover:shadow"     :class="{'active': $inertia.page.url.startsWith(href)}">
                                         <h1 class="text-xl"> <i class="fas fa-users"></i> User  Management</h1>
                                     </div>
