@@ -33,18 +33,24 @@ class Payment extends Model
             return false;
         }
         $path = $data->file('photo')->store('public/payment-proof');
-        foreach (  $data->month as $month) {
-            $month +=1;
-            Payment::create([
-            'student_id'=>$data->student,
-            'guard_id'=>auth()->user()->officer->id,
-            'tuition_id'=>$tuition->id,
-            'month'=> DateTime::createFromFormat('m',$month)->format('F'),
-            'year'=>$now->format('Y'),
-            'nominal'=>$tuition->nominal,
-            'photo_path'=>substr($path,7)
-        ]);
-    }
+        try {
+            foreach (  $data->month as $month) {
+                $month +=1;
+                Payment::create([
+                    'student_id'=>$data->student,
+                    'guard_id'=>auth()->user()->officer->id,
+                    'tuition_id'=>$tuition->id,
+                    'month'=> DateTime::createFromFormat('m',$month)->format('F'),
+                    'year'=>$now->format('Y'),
+                    'nominal'=>$tuition->nominal,
+                    'photo_path'=>substr($path,7)
+                ]); 
+            }
+
+        } catch (\Throwable $th) {
+            $path->delete();
+        }
+        
     return true;
     }
 }
