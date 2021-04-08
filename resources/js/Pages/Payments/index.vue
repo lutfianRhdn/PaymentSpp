@@ -13,7 +13,7 @@
                         <table-component  :paginationLinks="payments.links" >
                             <template #header>
                                 <th class="py-3">#</th>
-                                <th class="py-3">Month </th>
+                                <th class="py-3">Month  - Year</th>
                                 <th class="py-3">Student</th>
                                 <th class="py-3">Officer</th>
                                 <th class="py-3">Nominal</th>
@@ -27,7 +27,7 @@
                                     </td>
                                   
                                     <td class="py-3 px-6 text-center whitespace-nowrap">
-                                        <p class="font-medium text-center">{{ payment.month }}  </p>
+                                        <p class="font-medium text-center">{{ payment.month }} - {{payment.year}}  </p>
                                     </td>
                                     <td class="py-3 px-6 text-center whitespace-nowrap">
                                         <p class="font-medium text-center">{{ payment.student.user.name }}</p>
@@ -117,7 +117,6 @@ import InputError from '@/Jetstream/InputError'
         methods:{
             downloadExcel(){
                 window.open(route('payments.export'),'_blank')
-                // this.$inertia.post(route('payments.export'))
             },
             showModal(payment){
                 this.modal.payment =  payment

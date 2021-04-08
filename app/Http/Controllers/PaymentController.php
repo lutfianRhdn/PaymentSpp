@@ -117,10 +117,8 @@ class PaymentController extends Controller
         $students = Student::where('class_id',$id)->with('user')->get();
         $newStudents =[];
         foreach ($students as $student) {
-            // dd($student);
             array_push($newStudents,collect(['value'=>$student->id,'name'=>$student->user->name]));
         }
-        // dd(collect($newStudents));
         return collect($newStudents);
     }
 
@@ -138,17 +136,12 @@ class PaymentController extends Controller
         }elseif (auth()->user()->hasRole('guard')) {
             $result = $data->where('guard_id',auth()->user()->officer->id);
         }else{
-            // dd(auth()->user()->student);
             $result = $data->where('student_id',auth()->user()->student->id);
         }
         return $result->paginate(5);
     }
-// export
-public function export()
-{
-    return Excel::download(new PaymentExport(),'Payment.csv');
-    // dd($path);
-    // return response()->download( );
-    // return redirect()->back();
-}
+    public function export()
+    {
+        return Excel::download(new PaymentExport(),'Payment.csv');
+    }
 }

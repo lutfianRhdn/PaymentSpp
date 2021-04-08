@@ -415,7 +415,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
- // import Select2 from 'v-select2-component';
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -1635,7 +1634,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             message: $props.errors.name
           }, null, 8
           /* PROPS */
-          , ["message"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_15, [_hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <input-component  type=\"text\" class=\"w-full\" v-model=\"form.name\"/> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <select2 :options=\"['select1','select2']\" /> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("select", {
+          , ["message"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_15, [_hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("select", {
             name: "class",
             id: "class",
             "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {

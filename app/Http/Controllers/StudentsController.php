@@ -28,7 +28,6 @@ class StudentsController extends Controller
      */
     public function create()
     {
-        // dd('ok');
         $classes = Classes::with('major')->get();
         return Inertia::render('Students/create',compact('classes'));
     }
@@ -50,10 +49,8 @@ class StudentsController extends Controller
             'address'=>'required',
             'phone'=>'required'
         ]);
-        // dd($request);
         $userModel =new User;
         $userModel->createStudent($request);
-        // return true;
         return redirect()->route('students.index')->with('successMesage','Student was succcessfuly added ');
     }
 
@@ -66,7 +63,6 @@ class StudentsController extends Controller
     public function show(Student $student)
     {
         $student = Student::with('user')->with('class',function($q){$q->with('major');})->find($student->id);
-        // dd($student);
         return Inertia::render('Students/show',compact('student'));
     }
 
@@ -107,8 +103,6 @@ class StudentsController extends Controller
         $userModel = new User;
         $userModel->updateStudent($student,$request);
         return redirect()->back()->with('successMesage','Student was Successfuly Updated');
-
-        // dd($request);
     }
 
     /**

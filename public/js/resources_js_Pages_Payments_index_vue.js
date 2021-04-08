@@ -510,7 +510,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     downloadExcel: function downloadExcel() {
-      window.open(route('payments.export'), '_blank'); // this.$inertia.post(route('payments.export'))
+      window.open(route('payments.export'), '_blank');
     },
     showModal: function showModal(payment) {
       this.modal.payment = payment; // console.log(this.form.payment)
@@ -1525,7 +1525,7 @@ var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("
 
 var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", {
   "class": "py-3"
-}, "Month ", -1
+}, "Month - Year", -1
 /* HOISTED */
 );
 
@@ -1646,7 +1646,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                   key: payment.id
                 }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(++index), 1
                 /* TEXT */
-                )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(payment.month), 1
+                )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(payment.month) + " - " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(payment.year), 1
                 /* TEXT */
                 )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", _hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(payment.student.user.name), 1
                 /* TEXT */
