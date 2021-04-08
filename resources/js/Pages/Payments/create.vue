@@ -45,6 +45,7 @@
                                                     ref="multiselect"
 
                                                     >
+
                                                     <template v-slot:singlelabel="{ value }">
                                                         <div class="multiselect-single-label">
                                                        <p> {{ value.name }} </p>
@@ -54,6 +55,7 @@
                                                         <p> {{ option.name }} </p>
                                                     </template>
                                                     </multiselect>
+                                                    <input-error :message="errors.student">  </input-error>
                                                 <!-- <select name="student" id="" v-model="form.student" class="w-full">
                                                 <option v-for="student  in students " :key="student.id" :value="student.id" > {{student.user.name}}</option>
                                             </select> -->
@@ -73,6 +75,8 @@
                                                         </div>
                                                     </template>
                                                 </multiselect>
+                                                    <input-error :message="errors.month">  </input-error>
+
                                         </div>
                                     </div>
                                      <div class="col-span-6 sm:col-span-4 flex flex-col items-center " v-if="$page.props.jetstream.managesProfilePhotos">
@@ -99,7 +103,7 @@
                                             Select A New Photo
                                         </jet-secondary-button>
 
-                                        <jet-input-error :message="form.errors.photo" class="mt-2" />
+                                        <input-error :message="form.errors.photo" class="mt-2" />
                                     </div>
                             </div>
                             

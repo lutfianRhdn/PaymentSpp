@@ -1540,8 +1540,6 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   var _component_jet_secondary_button = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("jet-secondary-button");
 
-  var _component_jet_input_error = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("jet-input-error");
-
   var _component_action_message = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("action-message");
 
   var _component_button_component = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("button-component");
@@ -1625,7 +1623,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
           }, 8
           /* PROPS */
-          , ["modelValue", "options"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <select name=\"student\" id=\"\" v-model=\"form.student\" class=\"w-full\">\r\n                                                <option v-for=\"student  in students \" :key=\"student.id\" :value=\"student.id\" > {{student.user.name}}</option>\r\n                                            </select> ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_13, [_hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <select2 v-model=\"myValue\" :options=\"myOptions\" :settings=\"{ settingOption: value}\" /> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_multiselect, {
+          , ["modelValue", "options"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_input_error, {
+            message: $props.errors.student
+          }, null, 8
+          /* PROPS */
+          , ["message"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <select name=\"student\" id=\"\" v-model=\"form.student\" class=\"w-full\">\r\n                                                <option v-for=\"student  in students \" :key=\"student.id\" :value=\"student.id\" > {{student.user.name}}</option>\r\n                                            </select> ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_13, [_hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <select2 v-model=\"myValue\" :options=\"myOptions\" :settings=\"{ settingOption: value}\" /> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_multiselect, {
             modelValue: $data.form.month,
             "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
               return $data.form.month = $event;
@@ -1652,7 +1654,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
           }, 8
           /* PROPS */
-          , ["modelValue", "options"])])]), _ctx.$page.props.jetstream.managesProfilePhotos ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Profile Photo File Input "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+          , ["modelValue", "options"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_input_error, {
+            message: $props.errors.month
+          }, null, 8
+          /* PROPS */
+          , ["message"])])]), _ctx.$page.props.jetstream.managesProfilePhotos ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Profile Photo File Input "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
             type: "file",
             "class": "hidden",
             ref: "photo",
@@ -1686,7 +1692,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
           }, 8
           /* PROPS */
-          , ["onClick"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_input_error, {
+          , ["onClick"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_input_error, {
             message: $data.form.errors.photo,
             "class": "mt-2"
           }, null, 8
@@ -2422,7 +2428,9 @@ var _hoisted_4 = {
   "class": " mb-5 "
 };
 
-var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h1", {
+var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("'' ");
+
+var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h1", {
   "class": "text-xl"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("i", {
   "class": "fas fa-tachometer-alt"
@@ -2511,7 +2519,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     widthClass: "w-full"
   }, {
     trigger: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
+      return [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
         "class": ["px-4 py-2  my-3  hover:bg-gray-200 hover:shadow", {
           'active': _ctx.$inertia.page.url.startsWith(_ctx.href)
         }]

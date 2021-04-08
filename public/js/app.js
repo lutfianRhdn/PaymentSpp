@@ -17447,11 +17447,9 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // Import
 
 
 
- // import { library } from '@fortawesome/fontawesome-svg-core'
-// import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
-// import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 var el = document.getElementById('app');
+_inertiajs_progress__WEBPACK_IMPORTED_MODULE_2__.InertiaProgress.init();
 (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)({
   render: function render() {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.h)(_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.App, {

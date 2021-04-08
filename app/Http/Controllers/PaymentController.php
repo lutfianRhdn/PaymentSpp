@@ -52,6 +52,11 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'photo'=>'required|image|size:2046',
+            'student'=>'required',
+            'month'=>'required'
+        ]); 
         $paymentModel = new Payment;
         $payment = $paymentModel->createPayment($request);
         if ($payment ==false) {

@@ -4,12 +4,10 @@ require('./bootstrap');
 import { createApp, h } from 'vue';
 import { App as InertiaApp, plugin as InertiaPlugin } from '@inertiajs/inertia-vue3';
 import { InertiaProgress } from '@inertiajs/progress';
-// import { library } from '@fortawesome/fontawesome-svg-core'
-// import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
-// import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 
 const el = document.getElementById('app');
+InertiaProgress.init()
 
 createApp({
     render: () =>
