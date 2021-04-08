@@ -29,6 +29,7 @@ Route::middleware(['auth:sanctum','verified'])->group(function () {
         Route::resource('guards', \App\Http\Controllers\OfficerController::class);
         Route::resource('classes', \App\Http\Controllers\ClassController::class);
         Route::resource('tuitions', \App\Http\Controllers\TuitionController::class);
+        Route::get('payments/export',[\App\Http\Controllers\PaymentController::class,'export'])->name('payments.export');
     });
     Route::resource('payments', \App\Http\Controllers\PaymentController::class);
     Route::get('payments/getuser/{id}', [\App\Http\Controllers\PaymentController::class,'getUser'] )->name('payments.getUser');

@@ -7,6 +7,9 @@
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-xl w-4/5 mx-auto rounded-lg mb-10">
                     <card title="payment Management" createLink="payments.create" createPermission="payment.create">
+                <button-component bg="bg-gray-400" @click="downloadExcel">
+                    Export To excel
+                </button-component>
                         <table-component  :paginationLinks="payments.links" >
                             <template #header>
                                 <th class="py-3">#</th>
@@ -112,6 +115,10 @@ import InputError from '@/Jetstream/InputError'
             }
         },
         methods:{
+            downloadExcel(){
+                window.open(route('payments.export'),'_blank')
+                // this.$inertia.post(route('payments.export'))
+            },
             showModal(payment){
                 this.modal.payment =  payment
                 // console.log(this.form.payment)

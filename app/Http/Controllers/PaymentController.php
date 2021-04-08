@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\PaymentExport;
 use App\Models\Classes;
 use App\Models\Guard;
 use App\Models\Payment;
 use App\Models\Student;
 use App\Models\Tuition;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 use Inertia\Inertia;
 
 class PaymentController extends Controller
@@ -141,5 +143,12 @@ class PaymentController extends Controller
         }
         return $result->paginate(5);
     }
-
+// export
+public function export()
+{
+    return Excel::download(new PaymentExport(),'Payment.csv');
+    // dd($path);
+    // return response()->download( );
+    // return redirect()->back();
+}
 }
