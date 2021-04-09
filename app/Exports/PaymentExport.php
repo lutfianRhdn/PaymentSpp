@@ -39,7 +39,7 @@ class PaymentExport implements FromCollection,WithMapping,WithHeadings,ShouldAut
     {
         return [
             AfterSheet::class    => function(AfterSheet $event) {
-            $cellRange = 'A1:I3';
+            $cellRange = 'A1:I1';
             $event->sheet->getDelegate()->getStyle($cellRange)->getFont()->setSize(14);
         },
     ];

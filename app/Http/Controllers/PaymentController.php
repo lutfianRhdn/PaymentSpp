@@ -55,7 +55,7 @@ class PaymentController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'photo'=>'required|image|size:2046',
+            'photo'=>'required|image|max:2046',
             'student'=>'required',
             'month'=>'required'
         ]); 
@@ -142,6 +142,6 @@ class PaymentController extends Controller
     }
     public function export()
     {
-        return Excel::download(new PaymentExport(),'Payment.csv');
+        return Excel::download(new PaymentExport(),'Payment.xlsx');
     }
 }

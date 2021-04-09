@@ -61,7 +61,7 @@
                                             </select> -->
                                         </div>
                                         <div class="my-3 w-full">
-                                            <label for="nominal" class="block">Student</label>
+                                            <label for="nominal" class="block">Month</label>
                                                 <!-- <select2 v-model="myValue" :options="myOptions" :settings="{ settingOption: value}" /> -->
                                                   <multiselect
                                                     v-model="form.month"

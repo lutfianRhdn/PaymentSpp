@@ -1494,7 +1494,7 @@ var _hoisted_13 = {
 var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
   "for": "nominal",
   "class": "block"
-}, "Student", -1
+}, "Month", -1
 /* HOISTED */
 );
 
