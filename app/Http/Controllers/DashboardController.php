@@ -21,15 +21,13 @@ class DashboardController extends Controller
     public function index()
     {
         $now = Carbon::now();
-        $paymentOfTheMonth = Payment::where('month',$now->format('F'))->whereYear('year',$now->format('Y'))->get()->count();
-        $payments = $this->getTotal(Payment::whereYear('year',$now->format('Y'))->get()->groupBy('month'));
+        $paymentOfTheMonth = Payment::where('month',$now->format('F'))->whereYear('year',$now->format('Y'))->count();
+        $payments = $this->getTotal($this->filterData(Payment::whereYear('year',$now->format('Y')))->groupBy('month'));
         $paymentOfTheYear = $payments['paymentOfTheYear'];
-        // dd($payments);
         $totalPayments = $payments['totalPayments'];
         $totalStudent = Student::all()->count();
         $totalOfficer = Guard::all()->count();
         $months = $this->months;
-        // dd($payments); 
         return Inertia::render('Dashboard',compact('paymentOfTheMonth','paymentOfTheYear','totalStudent','totalOfficer','totalPayments','months'));
     }
 
@@ -117,5 +115,17 @@ class DashboardController extends Controller
             }
         }
         return collect(compact('paymentOfTheYear','totalPayments'));
+    }
+    public function filterData($data)
+    {
+        if (auth()->user()->hasRole('admin')) {
+            return $data->get();
+        }
+        if (auth()->user()->hasRole('guard')) {
+            return $data->where('guard_id',auth()->user()->officer->id)->get();
+        }else{
+            return $data->where('student_id',auth()->user()->student->id)->get();
+        }
+
     }
 }
