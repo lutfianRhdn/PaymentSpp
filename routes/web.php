@@ -27,6 +27,7 @@ Route::middleware(['auth:sanctum','verified'])->group(function () {
         Route::get('payments/export',[\App\Http\Controllers\PaymentController::class,'export'])->name('payments.export');
     });
     Route::resource('payments', \App\Http\Controllers\PaymentController::class);
+    // Route::
     Route::get('payments/getuser/{id}', [\App\Http\Controllers\PaymentController::class,'getUser'] )->name('payments.getUser');
 
 });
