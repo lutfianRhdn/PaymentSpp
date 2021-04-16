@@ -23,7 +23,13 @@ class PaymentController extends Controller
 
     public function index()
     {
-        $payments = $this->filterPayment();
+        $data = Payment::with('tuition')
+        ->with('student',function($q){
+            $q->with('user');
+        })->with('officer',function($q){
+            $q->with('user');
+        });
+        $payments = $this->filterPayment($data)->paginate(5);
         return Inertia::render('Payments/index',compact('payments'));
     }
 
@@ -74,8 +80,14 @@ class PaymentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        //
+    {$data = Payment::with('tuition')
+        ->with('student',function($q){
+            $q->with('user');
+        })->with('officer',function($q){
+            $q->with('user');
+        });
+        $payments = $this->filterPayment($data)->where('student_id',$id)->paginate(5);
+        return Inertia::render('Payments/show',compact('payments'));
     }
 
     /**
@@ -122,14 +134,9 @@ class PaymentController extends Controller
         return collect($newStudents);
     }
 
-    public function filterPayment()
+    public function filterPayment($data)
     {
-        $data = Payment::with('tuition')
-        ->with('student',function($q){
-            $q->with('user');
-        })->with('officer',function($q){
-            $q->with('user');
-        });
+        
         $result= [];
         if (auth()->user()->hasRole('admin')) {
             $result = $data;
@@ -138,7 +145,7 @@ class PaymentController extends Controller
         }else{
             $result = $data->where('student_id',auth()->user()->student->id);
         }
-        return $result->paginate(5);
+        return $result;
     }
     public function export()
     {
