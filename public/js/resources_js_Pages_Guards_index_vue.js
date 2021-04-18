@@ -505,6 +505,7 @@ __webpack_require__.r(__webpack_exports__);
       }),
       isShow: false,
       search: '',
+      newOfficer: this.guards,
       modal: {
         guard: [],
         user: []
@@ -1657,13 +1658,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           }, null, 544
           /* HYDRATE_EVENTS, NEED_PATCH */
           ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.search]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_table_component, {
-            paginationLinks: $props.guards.links
+            paginationLinks: $data.newOfficer.links
           }, {
             header: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
               return [_hoisted_7, _hoisted_8, _hoisted_9, _hoisted_10];
             }),
             content: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-              return [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.guards.data, function (guard, index) {
+              return [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.newOfficer.data, function (guard, index) {
                 return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("tr", {
                   "class": "border-b border-gray-200 hover:bg-gray-100",
                   key: guard.id

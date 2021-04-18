@@ -109,8 +109,14 @@ class OfficerController extends Controller
         return redirect()->back()->with('successMesage','Officer was Successfuly Deleted');
     }
     // custom
-    public function where(Type $var = null)
+    public function where()
     {
-        # code...
+        $keyword = request('search');
+        $officers = Guard::where(function($query) use ($keyword){
+            $query->whereHas('user',function($q)use ($keyword){$q->where('name','LIKE',"%{$keyword}%");});
+            $query->orWhereHas('user',function($q)use ($keyword){$q->where('email','LIKE',"%{$keyword}%");});
+        })->with('user')->paginate(100); 
+        return $officers;
+        // dd(request('search'));
     }
 }

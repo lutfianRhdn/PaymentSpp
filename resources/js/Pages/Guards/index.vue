@@ -11,7 +11,7 @@
                             <label for="search" class="my-auto">Search</label>
                             <input class="border border-gray-300 focus:border-indigo-300 px-3 py-1 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm" v-model="search" @keyup="submitSearch()" >
                         </div>
-                        <table-component  :paginationLinks="guards.links">
+                        <table-component  :paginationLinks="newOfficer.links">
                             <template #header>
                                 <th class="py-3">#</th>
                                 <th class="py-3">Name</th>
@@ -20,7 +20,7 @@
                             </template>
                             <template #content>
                                 <tr class="border-b border-gray-200 hover:bg-gray-100"
-                                    v-for="(guard,index) in guards.data" :key="guard.id">
+                                    v-for="(guard,index) in newOfficer.data" :key="guard.id">
                                     <td class="py-3 px-6 text-center whitespace-nowrap">
                                         <p class="font-medium text-center">{{ ++index }}</p>
                                     </td>
@@ -126,6 +126,7 @@ import InputError from '@/Jetstream/InputError'
                 }),
                 isShow :false,
                 search :'',
+                newOfficer: this.guards,
                 modal:{
                     guard: [],
                     user : []
