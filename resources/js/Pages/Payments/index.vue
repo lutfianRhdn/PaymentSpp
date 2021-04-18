@@ -7,10 +7,17 @@
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-xl w-4/5 mx-auto rounded-lg mb-10">
                     <card title="payment Management" createLink="payments.create" createPermission="payment.create">
+                        <div class="flex justify-between  py-3 px-6">
+
+                          <div class="flex align-center">
+                            <label for="search" class="my-auto">Search</label>
+                            <input class="border border-gray-300 focus:border-indigo-300 px-3 py-1 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm" v-model="search" @keyup="submitSearch()" >
+                        </div>
                 <button-component bg="bg-gray-400" @click="downloadExcel">
                     Export To excel
                 </button-component>
-                        <table-component  :paginationLinks="payments.links" >
+                        </div>
+                        <table-component  :paginationLinks="newPayment.links" >
                             <template #header>
                                 <th class="py-3">#</th>
                                 <th class="py-3">Month  - Year</th>
@@ -21,7 +28,7 @@
                             </template>
                             <template #content>
                                 <tr class="border-b border-gray-200 hover:bg-gray-100"
-                                    v-for="(payment,index) in payments.data" :key="payment.id">
+                                    v-for="(payment,index) in newPayment.data" :key="payment.id">
                                     <td class="py-3 px-6 text-center whitespace-nowrap">
                                         <p class="font-medium text-center">{{ ++index }}</p>
                                     </td>
@@ -107,6 +114,8 @@ import InputError from '@/Jetstream/InputError'
                     payment: [],
                 }),
                 isShow :false,
+                search:'',
+                newPayment: this.payments,
                 modal:{
                     payment : []
                 },
@@ -135,7 +144,14 @@ import InputError from '@/Jetstream/InputError'
                     onFinish: () => this.form.reset(),
 
                 })
-            }
+            },
+            submitSearch:function(){
+                console.log(this.search)    
+                axios.get(route('payment.where',{'search':this.search})).then(res=>{
+                    console.log(res.data)
+                     this.newPayment = res.data
+                })
+            },
         }
         
     }

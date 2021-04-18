@@ -151,4 +151,33 @@ class PaymentController extends Controller
     {
         return Excel::download(new PaymentExport(),'Payment.xlsx');
     }
+    public function where()
+    {
+        $keyword = request()->search;
+        $data = Payment::with('tuition')
+        ->where(function($query)use($keyword){
+            $query->where('month','LIKE',"%{$keyword}%");
+            $query->orWhere('year','LIKE',"%{$keyword}%");
+            $query->orWhere('nominal','LIKE',"%{$keyword}%");
+            // WHERE USER
+            $query->orWhereHas('student',function($q)use($keyword){
+                $q->whereHas('user',function($q)use($keyword){
+                    $q->where('name','LIKE',"%{$keyword}%");
+                });
+            });
+            $query->orWhereHas('officer',function($q)use($keyword){
+                $q->whereHas('user',function($q)use($keyword){
+                    $q->where('name','LIKE',"%{$keyword}%");
+                });
+            });
+        })
+        ->with('student',function($q){
+            $q->with('user');
+        })->with('officer',function($q){
+            $q->with('user');
+        });
+        
+        $payments = $this->filterPayment($data)->paginate(100);
+        return $payments;
+    }
 }

@@ -26,6 +26,7 @@ Route::middleware(['auth:sanctum','verified'])->group(function () {
         Route::get('officer/get',[\App\Http\Controllers\OfficerController::class,'where'])->name('officer.where');
         Route::get('classes/get',[\App\Http\Controllers\ClassController::class,'where'])->name('class.where');
         Route::get('tuitions/get',[\App\Http\Controllers\TuitionController::class,'where'])->name('tuition.where');
+        Route::get('payments/get',[\App\Http\Controllers\PaymentController::class,'where'])->name('payment.where');
        
         // resource
         Route::resource('students', \App\Http\Controllers\StudentsController::class);
