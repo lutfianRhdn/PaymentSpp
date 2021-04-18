@@ -116,4 +116,40 @@ class ClassController extends Controller
         $class->delete();
         return redirect()->back()->with('successMesage','Class was Successfuly Deleted');
     }
+    // custom
+    public function where()
+    { 
+        $keyword = request()->search;
+        $className = explode(' ',$keyword);
+        $result = Classes::where(function($query)use ($className,$keyword){
+            if (count($className) >0) {
+                    $query->where('level',strtolower($className[0]));
+                    if (count($className) > 1) {
+                        $query->WhereHas('major',function($q)use ($className){
+                            $q->where('label',ucfirst($className[1]));
+                        });
+                    }
+                    if (count($className) >2) {
+                        $query->Where('label',$className[2]);
+                    }
+                
+            }
+        })
+        ->orWhereHas('major',function($q)use ($keyword){
+            $word = str_replace(' ',' ',ucwords($keyword));
+            $q->where('label','LIKE',"%{$word}%");
+        
+        })
+        ->orWhereHas('major',function($q)use ($keyword){
+            $word = str_replace(' ',' ',ucwords($keyword));
+            $q->where('name','LIKE',"%{$word}%");
+        })
+      
+        ->with('major')
+        ->paginate(100);
+        foreach ($result as $class ) {
+            $class->studentsTotal = $class->students->count();
+       }
+        return $result;
+    }
 }

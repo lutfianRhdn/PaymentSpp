@@ -137,11 +137,11 @@ class StudentsController extends Controller
             if (count($className) >0) {
                 $query->orWhereHas('class',function($q)use ($className){
                     $q->where('level',strtolower($className[0]));
-if (count($className) > 1) {
-    $q->WhereHas('major',function($q)use ($className){
-        $q->where('label',ucfirst($className[1]));
-    });
-}
+                    if (count($className) > 1) {
+                        $q->WhereHas('major',function($q)use ($className){
+                            $q->where('label',ucfirst($className[1]));
+                        });
+                    }
                     if (count($className) >2) {
                         $q->Where('label',$className[2]);
                     }
