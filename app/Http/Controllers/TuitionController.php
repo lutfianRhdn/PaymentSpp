@@ -109,4 +109,17 @@ class TuitionController extends Controller
         $tuition->delete();
         return redirect()->back()->with('successMesage','Tuition was succcessfuly deleted ');
     }
+    public function where()
+    {
+        // dd();
+        $keyword = request()->search;
+        $tuitions = Tuition::where(function($query)use($keyword){
+            $query->where('year','LIKE',"%{$keyword}%");
+            $query->orWhere('nominal','LIKE',"%{$keyword}%");
+        })->with('payments')->paginate(100);
+        foreach ($tuitions as $tuition ) {
+            $tuition->totalPayment = $tuition->payments->count();
+       }
+       return $tuitions;
+    }
 }
