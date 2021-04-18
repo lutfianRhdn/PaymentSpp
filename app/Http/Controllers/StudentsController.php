@@ -125,6 +125,33 @@ class StudentsController extends Controller
         $student->user()->delete();
         return redirect()->back()->with('successMesage','Student was Successfuly Deleted');
     }
+
+    public function where()
+    {
+        $keyword = request('search');
+        $student = Student::where(function($query) use ($keyword){
+            $query->whereHas('user',function($q)use ($keyword){$q->where('name','LIKE',"%{$keyword}%");});
+            $query->orWhere('nisn','LIKE',"%{$keyword}%");
+            $query->orWhere('nis','LIKE',"%{$keyword}%");
+            $className = explode(' ',$keyword);
+            if (count($className) >0) {
+                $query->orWhereHas('class',function($q)use ($className){
+                    $q->where('level',strtolower($className[0]));
+if (count($className) > 1) {
+    $q->WhereHas('major',function($q)use ($className){
+        $q->where('label',ucfirst($className[1]));
+    });
+}
+                    if (count($className) >2) {
+                        $q->Where('label',$className[2]);
+                    }
+                });
+                
+            }
+        })
+        ->with('user')->with('class',function($q){$q->with('major');})->paginate(100);
+        return $student;
+    }
     public function calculate($student)
     {
         

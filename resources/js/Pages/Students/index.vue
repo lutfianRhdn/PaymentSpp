@@ -7,10 +7,12 @@
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-xl w-4/5 mx-auto rounded-lg mb-10">
                     <card title="Student Management" createLink="students.create" createPermission="user.create">
-                        <action-message>
-                            <h1>ok</h1>
-                        </action-message>
-                        <table-component :paginationLinks="students.links">
+                        
+                        <div class="flex align-center mx-5 my-2">
+                            <label for="search" class="my-auto">Search</label>
+                            <input class="border border-gray-300 focus:border-indigo-300 px-3 py-1 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm" v-model="search" @keyup="submitSearch()" >
+                        </div>
+                        <table-component :paginationLinks="newStudents.links">
                             <template #header>
                                 <th class="py-3">#</th>
                                 <th class="py-3">Nisn</th>
@@ -20,7 +22,7 @@
                             </template>
                             <template #content>
                                 <tr class="border-b border-gray-200 hover:bg-gray-100"
-                                    v-for="(student,index) in students.data" :key="student.id">
+                                    v-for="(student,index) in newStudents.data" :key="student.id">
                                     <td class="py-3 px-6 text-center whitespace-nowrap">
                                         <p class="font-medium text-center">{{ ++index }}</p>
                                     </td>
@@ -101,6 +103,7 @@
     import DialogModal from '@/Jetstream/DialogModal'
     import InputComponent from '../../Jetstream/Input.vue'
     import InputError from '@/Jetstream/InputError'
+import axios from 'axios'
 
     export default {
         props: ['students', 'errors'],
@@ -119,9 +122,11 @@
             return {
                 form: this.$inertia.form({
                     _method: 'POST',
-                    student: [],
+                    student: this.students,
                     nis: ''
                 }),
+                newStudents : this.students,
+                search :'',
                 isShow: false,
                 modal: {
                     student: [],
@@ -152,7 +157,14 @@
                     onFinish: () => this.form.reset(),
 
                 })
-            }
+            },
+            submitSearch:function(){
+                console.log(this.search)    
+                axios.get(route('studens.where',{'search':this.search})).then(res=>{
+                     this.newStudents = res.data
+
+})
+            },
         }
 
     }

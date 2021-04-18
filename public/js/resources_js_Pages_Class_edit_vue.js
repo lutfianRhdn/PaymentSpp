@@ -239,7 +239,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ['modelValue'],
+  props: ['modelValue', 'keypress'],
   emits: ['update:modelValue'],
   methods: {
     focus: function focus() {
@@ -1161,6 +1161,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     value: $props.modelValue,
     onInput: _cache[1] || (_cache[1] = function ($event) {
       return _ctx.$emit('update:modelValue', $event.target.value);
+    }),
+    onKeypress: _cache[2] || (_cache[2] = function () {
+      return $props.keypress && $props.keypress.apply($props, arguments);
     }),
     ref: "input"
   }, null, 40

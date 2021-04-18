@@ -108,4 +108,9 @@ class OfficerController extends Controller
         $guard->user()->delete();
         return redirect()->back()->with('successMesage','Officer was Successfuly Deleted');
     }
+    // custom
+    public function where(Type $var = null)
+    {
+        # code...
+    }
 }

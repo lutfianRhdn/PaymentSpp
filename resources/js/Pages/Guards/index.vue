@@ -7,7 +7,10 @@
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-xl w-4/5 mx-auto rounded-lg mb-10">
                     <card title="Officer Management" createLink="guards.create" createPermission="user.create">
-                        <action-message> <h1>ok</h1> </action-message>
+                          <div class="flex align-center mx-5 my-2">
+                            <label for="search" class="my-auto">Search</label>
+                            <input class="border border-gray-300 focus:border-indigo-300 px-3 py-1 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm" v-model="search" @keyup="submitSearch()" >
+                        </div>
                         <table-component  :paginationLinks="guards.links">
                             <template #header>
                                 <th class="py-3">#</th>
@@ -122,6 +125,7 @@ import InputError from '@/Jetstream/InputError'
                     email:''
                 }),
                 isShow :false,
+                search :'',
                 modal:{
                     guard: [],
                     user : []
@@ -152,7 +156,14 @@ import InputError from '@/Jetstream/InputError'
                     onFinish: () => this.form.reset(),
 
                 })
-            }
+            },
+             submitSearch:function(){
+                console.log(this.search)    
+                axios.get(route('officer.where',{'search':this.search})).then(res=>{
+                     this.newOfficer = res.data
+
+})
+            },
         }
         
     }

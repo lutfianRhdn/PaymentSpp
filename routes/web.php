@@ -20,6 +20,12 @@ Route::get('/', function () {
 });
 Route::middleware(['auth:sanctum','verified'])->group(function () {
     Route::prefix('admin')->group(function () {
+
+        // search url
+        Route::get('students/get',[\App\Http\Controllers\StudentsController::class,'where'])->name('studens.where');
+        Route::get('officer/get',[\App\Http\Controllers\OfficerController::class,'where'])->name('officer.where');
+       
+        // resource
         Route::resource('students', \App\Http\Controllers\StudentsController::class);
         Route::resource('guards', \App\Http\Controllers\OfficerController::class);
         Route::resource('classes', \App\Http\Controllers\ClassController::class);
@@ -27,7 +33,6 @@ Route::middleware(['auth:sanctum','verified'])->group(function () {
         Route::get('payments/export',[\App\Http\Controllers\PaymentController::class,'export'])->name('payments.export');
     });
     Route::resource('payments', \App\Http\Controllers\PaymentController::class);
-    // Route::
     Route::get('payments/getuser/{id}', [\App\Http\Controllers\PaymentController::class,'getUser'] )->name('payments.getUser');
 
 });
