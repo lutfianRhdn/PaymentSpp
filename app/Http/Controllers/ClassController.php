@@ -121,27 +121,37 @@ class ClassController extends Controller
     { 
         $keyword = request()->search;
         $className = explode(' ',$keyword);
+        $word = str_replace(' ',' ',ucwords($keyword));
+
         $result = Classes::where(function($query)use ($className,$keyword){
             if (count($className) >0) {
-                    $query->where('level',strtolower($className[0]));
+                    $level = $query->where('level',strtolower($className[0]));
                     if (count($className) > 1) {
-                        $query->WhereHas('major',function($q)use ($className){
+                       
+                       $major = $query->WhereHas('major',function($q)use ($className){
                             $q->where('label',ucfirst($className[1]));
                         });
                     }
+
                     if (count($className) >2) {
                         $query->Where('label',$className[2]);
                     }
                 
             }
         })
-        ->orWhereHas('major',function($q)use ($keyword){
-            $word = str_replace(' ',' ',ucwords($keyword));
-            $q->where('label','LIKE',"%{$word}%");
-        
+        ->orWhere(function($query)use ($word){
+            $where = explode(' ',$word);
+            if (count($where) >1) {
+            $query->whereHas('major',function($q)use($where){
+                $q->where('label','LIKE',"%{$where[0]}%");
+            });
+            $query->where('label',$where[1]);
+        }
         })
-        ->orWhereHas('major',function($q)use ($keyword){
-            $word = str_replace(' ',' ',ucwords($keyword));
+        ->orWhereHas('major',function($q)use ($word){
+            $q->where('label','LIKE',"%{$word}%");        
+        })
+        ->orWhereHas('major',function($q)use ($word){
             $q->where('name','LIKE',"%{$word}%");
         })
       
