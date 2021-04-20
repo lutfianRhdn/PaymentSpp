@@ -2,7 +2,7 @@
 <template>
     <app-layout>
         <template #header>
-            <h1>Guard Managemnet</h1>
+            <h1>Guard Management</h1>
         </template>
         <div class="">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">

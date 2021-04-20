@@ -2,7 +2,7 @@
 <template>
     <app-layout>
         <template #header>
-            <h1>classes Managemnet</h1>
+            <h1>classes Management</h1>
         </template>
         <div class="">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">

@@ -1,7 +1,7 @@
 <template>
     <app-layout>
         <template #header>
-            <h1>payment Managemnet</h1>
+            <h1>payment Management</h1>
         </template>
         <div class="">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -37,20 +37,19 @@
                                         <p class="font-medium text-center">{{ payment.tuition.nominal }}</p>
                                     </td>
                                 
-                                    <td
-                                        class="py-3 px-6 text-center whitespace-nowrap flex items-center justify-around">
-                                      
-                                        
+                                    <td class="py-3 px-6 text-center whitespace-nowrap flex items-center justify-around">
                                         <button-component type="button"
                                         @click="showModal(payment)"
-
                                             class="rounded-full " bg="bg-blue-500 hover:bg-blue-700">
                                             <i class="fas fa-image"></i>
                                         </button-component>
                                     </td>
-                                </tr>
+                                </tr>   
                             </template>
                         </table-component>
+                        <button-component bg="bg-gray-400" @click="downloadExcel">
+                            Export to Excel
+                        </button-component>
                     </card>
                 </div>
             </div>

@@ -35776,6 +35776,14 @@ var map = {
 		"./resources/js/Pages/Guards/show.vue",
 		"resources_js_Pages_Guards_show_vue"
 	],
+	"./Login": [
+		"./resources/js/Pages/Login.vue",
+		"resources_js_Pages_Login_vue"
+	],
+	"./Login.vue": [
+		"./resources/js/Pages/Login.vue",
+		"resources_js_Pages_Login_vue"
+	],
 	"./Payments": [
 		"./resources/js/Pages/Payments/index.vue",
 		"resources_js_Pages_Payments_index_vue"
@@ -36095,7 +36103,7 @@ module.exports = webpackAsyncContext;
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_Pages_API_ApiTokenManager_vue":1,"resources_js_Pages_API_Index_vue":1,"resources_js_Pages_Auth_ConfirmPassword_vue":1,"resources_js_Pages_Auth_ForgotPassword_vue":1,"resources_js_Pages_Auth_Login_vue":1,"resources_js_Pages_Auth_Register_vue":1,"resources_js_Pages_Auth_ResetPassword_vue":1,"resources_js_Pages_Auth_TwoFactorChallenge_vue":1,"resources_js_Pages_Auth_VerifyEmail_vue":1,"resources_js_Pages_Class_index_vue":1,"resources_js_Pages_Class_create_vue":1,"resources_js_Pages_Class_edit_vue":1,"resources_js_Pages_Class_show_vue":1,"resources_js_Pages_Dashboard_vue":1,"resources_js_Pages_Guards_index_vue":1,"resources_js_Pages_Guards_create_vue":1,"resources_js_Pages_Guards_edit_vue":1,"resources_js_Pages_Guards_show_vue":1,"resources_js_Pages_Payments_index_vue":1,"resources_js_Pages_Payments_create_vue":1,"resources_js_Pages_Payments_edit_vue":1,"resources_js_Pages_Payments_show_vue":1,"resources_js_Pages_PrivacyPolicy_vue":1,"resources_js_Pages_Profile_DeleteUserForm_vue":1,"resources_js_Pages_Profile_LogoutOtherBrowserSessionsForm_vue":1,"resources_js_Pages_Profile_Show_vue":1,"resources_js_Pages_Profile_TwoFactorAuthenticationForm_vue":1,"resources_js_Pages_Profile_UpdatePasswordForm_vue":1,"resources_js_Pages_Profile_UpdateProfileInformationForm_vue":1,"resources_js_Pages_Students_index_vue":1,"resources_js_Pages_Students_create_vue":1,"resources_js_Pages_Students_edit_vue":1,"resources_js_Pages_Students_show_vue":1,"resources_js_Pages_TermsOfService_vue":1,"resources_js_Pages_Tuitions_index_vue":1,"resources_js_Pages_Tuitions_create_vue":1,"resources_js_Pages_Tuitions_edit_vue":1,"resources_js_Pages_Tuitions_show_vue":1,"resources_js_Pages_Welcome_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_Pages_API_ApiTokenManager_vue":1,"resources_js_Pages_API_Index_vue":1,"resources_js_Pages_Auth_ConfirmPassword_vue":1,"resources_js_Pages_Auth_ForgotPassword_vue":1,"resources_js_Pages_Auth_Login_vue":1,"resources_js_Pages_Auth_Register_vue":1,"resources_js_Pages_Auth_ResetPassword_vue":1,"resources_js_Pages_Auth_TwoFactorChallenge_vue":1,"resources_js_Pages_Auth_VerifyEmail_vue":1,"resources_js_Pages_Class_index_vue":1,"resources_js_Pages_Class_create_vue":1,"resources_js_Pages_Class_edit_vue":1,"resources_js_Pages_Class_show_vue":1,"resources_js_Pages_Dashboard_vue":1,"resources_js_Pages_Guards_index_vue":1,"resources_js_Pages_Guards_create_vue":1,"resources_js_Pages_Guards_edit_vue":1,"resources_js_Pages_Guards_show_vue":1,"resources_js_Pages_Login_vue":1,"resources_js_Pages_Payments_index_vue":1,"resources_js_Pages_Payments_create_vue":1,"resources_js_Pages_Payments_edit_vue":1,"resources_js_Pages_Payments_show_vue":1,"resources_js_Pages_PrivacyPolicy_vue":1,"resources_js_Pages_Profile_DeleteUserForm_vue":1,"resources_js_Pages_Profile_LogoutOtherBrowserSessionsForm_vue":1,"resources_js_Pages_Profile_Show_vue":1,"resources_js_Pages_Profile_TwoFactorAuthenticationForm_vue":1,"resources_js_Pages_Profile_UpdatePasswordForm_vue":1,"resources_js_Pages_Profile_UpdateProfileInformationForm_vue":1,"resources_js_Pages_Students_index_vue":1,"resources_js_Pages_Students_create_vue":1,"resources_js_Pages_Students_edit_vue":1,"resources_js_Pages_Students_show_vue":1,"resources_js_Pages_TermsOfService_vue":1,"resources_js_Pages_Tuitions_index_vue":1,"resources_js_Pages_Tuitions_create_vue":1,"resources_js_Pages_Tuitions_edit_vue":1,"resources_js_Pages_Tuitions_show_vue":1,"resources_js_Pages_Welcome_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};
