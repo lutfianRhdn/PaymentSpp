@@ -28,8 +28,7 @@ class DashboardController extends Controller
         $totalStudent = Student::all()->count();
         $totalOfficer = Guard::all()->count();
         $months = $this->months;
-        $payments = Payment::limit(5)->with('student',function($q){$q->with('user');})->get();
-        // dd($payments); 
+        $payments = Payment::limit(5)->with('student',function($q){$q->with('user');})->orderBy('id','DESC')->get();
         return Inertia::render('Dashboard',compact('paymentOfTheMonth','paymentOfTheYear','totalStudent','totalOfficer','totalPayments','months','payments'));
     }
 
