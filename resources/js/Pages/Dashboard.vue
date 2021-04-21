@@ -98,7 +98,6 @@
     import Card from '@/Jetstream/Card'
     import ApexCharts from 'vue3-apexcharts'
     import numeral from 'numeral'
-    import TableComponent from '@/component/TableComponent'
 
     export default {
         props: ['paymentOfTheMonth', 'paymentOfTheYear', 'totalStudent', 'totalOfficer', 'months', 'totalPayments',
@@ -108,7 +107,6 @@
             AppLayout,
             Card,
             apexchart: ApexCharts,
-            TableComponent
         },
         data: function () {
             let result = this.months.map(month => {
@@ -118,7 +116,7 @@
             return {
                 chartOptions: {
                     chart: {
-                        id: "monthly",
+                        id: "vuechart-example",
                     },
                     xaxis: {
                         categories: this.months,
