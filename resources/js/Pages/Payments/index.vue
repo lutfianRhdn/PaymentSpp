@@ -44,7 +44,7 @@
                                     </td>
                                    
                                     <td class="py-3 px-6 text-center whitespace-nowrap">
-                                        <p class="font-medium text-center">{{ payment.tuition.nominal }}</p>
+                                        <p class="font-medium text-center">{{ changeFormat(payment.tuition.nominal)}}</p>
                                     </td>
                                 
                                     <td class="py-3 px-6 text-center whitespace-nowrap flex items-center justify-around">
@@ -89,6 +89,7 @@ import ActionMessage from '@/Jetstream/ActionMessage.vue'
 import DialogModal from '@/Jetstream/DialogModal'
 import InputComponent from '../../Jetstream/Input.vue'
 import InputError from '@/Jetstream/InputError'
+import numeral from 'numeral'
 
     export default {
         props: ['payments','errors'],
@@ -148,6 +149,7 @@ import InputError from '@/Jetstream/InputError'
                      this.newPayment = res.data
                 })
             },
+            changeFormat: (num) => numeral(num).format('0a')
         }
         
     }
