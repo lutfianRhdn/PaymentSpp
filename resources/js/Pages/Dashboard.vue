@@ -67,16 +67,19 @@
 
                             <apexchart width="500" type="area" :options="chartOptions" :series="series"></apexchart>
                             
-                            <div class="flex flex-row-reverse items-center">
+                            <div class="flex flex-col items-center">
                                 <div class="flex bg-white overflow-hidden shadow-xl w-full h-1/2 mx-auto p-8 rounded-xl">
-                                    <table class="table-auto">
+                                    <table class="table-fixed">
                                         <thead>
                                             <tr>
-                                                <th>Newest Payment</th>
+                                                <th>Name</th>
+                                                <th>Month</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr v-for="payment in payments " :key="payment.id">{{payment.student.user.name}}
+                                            <tr v-for="payment in payments " :key="payment.id">
+                                                <td>{{payment.student.user.name}}</td>
+                                                <td>{{payment.month}}</td>
                                             </tr>
                                         </tbody>
                                     </table>
