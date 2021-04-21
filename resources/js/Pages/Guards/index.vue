@@ -6,9 +6,12 @@
         <div class="">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-xl w-4/5 mx-auto rounded-lg mb-10">
-                    <card title="Officer Management" createLink="guards.create" createPermission="guard.create">
-                        <action-message> <h1>ok</h1> </action-message>
-                        <table-component  :paginationLinks="guards.links">
+                    <card title="Officer Management" createLink="guards.create" createPermission="user.create">
+                          <div class="flex align-center mx-5 my-2">
+                            <label for="search" class="my-auto">Search</label>
+                            <input class="border border-gray-300 focus:border-indigo-300 px-3 py-1 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm" v-model="search" @keyup="submitSearch()" >
+                        </div>
+                        <table-component  :paginationLinks="newOfficer.links">
                             <template #header>
                                 <th class="py-3">#</th>
                                 <th class="py-3">Name</th>
@@ -17,7 +20,7 @@
                             </template>
                             <template #content>
                                 <tr class="border-b border-gray-200 hover:bg-gray-100"
-                                    v-for="(guard,index) in guards.data" :key="guard.id">
+                                    v-for="(guard,index) in newOfficer.data" :key="guard.id">
                                     <td class="py-3 px-6 text-center whitespace-nowrap">
                                         <p class="font-medium text-center">{{ ++index }}</p>
                                     </td>
@@ -84,7 +87,7 @@
                 :class="{ 'opacity-25 rounded-md': form.processing }" :disabled="form.processing"
                 
                 >
-                    Delete Student
+                    Delete Officer
                 </button-component>
             </template>
         </dialog-modal>
@@ -122,6 +125,8 @@ import InputError from '@/Jetstream/InputError'
                     email:''
                 }),
                 isShow :false,
+                search :'',
+                newOfficer: this.guards,
                 modal:{
                     guard: [],
                     user : []
@@ -152,7 +157,14 @@ import InputError from '@/Jetstream/InputError'
                     onFinish: () => this.form.reset(),
 
                 })
-            }
+            },
+             submitSearch:function(){
+                console.log(this.search)    
+                axios.get(route('officer.where',{'search':this.search})).then(res=>{
+                     this.newOfficer = res.data
+
+})
+            },
         }
         
     }

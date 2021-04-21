@@ -16,19 +16,24 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
+    return redirect('login');
 });
 Route::middleware(['auth:sanctum','verified'])->group(function () {
     Route::prefix('admin')->group(function () {
+
+        // search url
+        Route::get('students/get',[\App\Http\Controllers\StudentsController::class,'where'])->name('studens.where');
+        Route::get('officer/get',[\App\Http\Controllers\OfficerController::class,'where'])->name('officer.where');
+        Route::get('classes/get',[\App\Http\Controllers\ClassController::class,'where'])->name('class.where');
+        Route::get('tuitions/get',[\App\Http\Controllers\TuitionController::class,'where'])->name('tuition.where');
+        Route::get('payments/get',[\App\Http\Controllers\PaymentController::class,'where'])->name('payment.where');
+       
+        // resource
         Route::resource('students', \App\Http\Controllers\StudentsController::class);
         Route::resource('guards', \App\Http\Controllers\OfficerController::class);
         Route::resource('classes', \App\Http\Controllers\ClassController::class);
         Route::resource('tuitions', \App\Http\Controllers\TuitionController::class);
+        Route::get('payments/export',[\App\Http\Controllers\PaymentController::class,'export'])->name('payments.export');
     });
     Route::get('/dashboard',[App\Http\Controllers\DashboardController::class,'index'])->name('dashboard');
     Route::resource('payments', \App\Http\Controllers\PaymentController::class);

@@ -24,6 +24,9 @@
                                         <p>Address : {{student.address}}</p>
                                     </div>
                                 </div>
+                                Payments : <inertia-link :href="route('payments.show',student.id)" class=" bg-blue-500 hover:bg-blue-400 px-4 shadow-md rounded text-white ">
+                                    {{student.payments.length}}
+                                </inertia-link>
                             </div>
                         </div>
                         <hr>
