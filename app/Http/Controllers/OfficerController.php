@@ -111,12 +111,8 @@ class OfficerController extends Controller
     // custom
     public function where()
     {
-        $keyword = request('search');
-        $officers = Guard::where(function($query) use ($keyword){
-            $query->whereHas('user',function($q)use ($keyword){$q->where('name','LIKE',"%{$keyword}%");});
-            $query->orWhereHas('user',function($q)use ($keyword){$q->where('email','LIKE',"%{$keyword}%");});
-        })->with('user')->paginate(100); 
+        $model = new Guard;
+        $officers = $model->search(request()->search);
         return $officers;
-        // dd(request('search'));
     }
 }

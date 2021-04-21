@@ -111,12 +111,8 @@ class TuitionController extends Controller
     }
     public function where()
     {
-        // dd();
-        $keyword = request()->search;
-        $tuitions = Tuition::where(function($query)use($keyword){
-            $query->where('year','LIKE',"%{$keyword}%");
-            $query->orWhere('nominal','LIKE',"%{$keyword}%");
-        })->with('payments')->paginate(100);
+        $model = new Tuition;
+        $tuitions =$model->search(request()->search);
         foreach ($tuitions as $tuition ) {
             $tuition->totalPayment = $tuition->payments->count();
        }

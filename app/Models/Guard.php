@@ -17,4 +17,11 @@ class Guard extends Model
     {
         return $this->hasMany(Payment::class);
     }
+    public function search($keyword)
+    {
+        return Guard::where(function($query) use ($keyword){
+            $query->whereHas('user',function($q)use ($keyword){$q->where('name','LIKE',"%{$keyword}%");});
+            $query->orWhereHas('user',function($q)use ($keyword){$q->where('email','LIKE',"%{$keyword}%");});
+        })->with('user')->paginate(100); 
+    }
 }
