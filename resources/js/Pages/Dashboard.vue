@@ -64,33 +64,25 @@
                 <div class="flex mx-auto px-10 items-center ">
                     <div class="flex bg-white overflow-hidden w-screen shadow-xl w-5/12 h-1/2 mx-auto p-8 rounded-xl">
                         <div class="flex flex-row items-center w-full justify-between">
-                            <apexchart width="500" type="bar" :options="chartOptions" :series="series"></apexchart>
-                            <!-- <div class="flex items-center">
-                                <div class="flex-shrink pr-4 mx-10">
-                                <div class="rounded-full p-3 bg-gray-200">
-                                    <i class="fa fa-money-check-alt fa-fw text-green-500"></i>
-                                </div>
-                            </div>
-                                <div class="flex flex-col items-center">
-                                    <h3 class="text-lg"><ul>
-                                        <li v-for="month in months" :key="month">
-                                            {{month}} : Rp.{{this.getNominal(month)}}
-                                        </li>
-                                    </ul></h3>
-                                    <h5 class="font-bold text-gray-500 text-center">Monthly</h5>
-                                </div>
-                            </div> -->
 
-
+                            <apexchart width="500" type="area" :options="chartOptions" :series="series"></apexchart>
+                            
                             <div class="flex flex-row-reverse items-center">
-                                <div
-                                    class="flex bg-white overflow-hidden shadow-xl w-full h-1/2 mx-auto p-8 rounded-xl">
-                                    <ul>
-                                        <li v-for="payment in payments " :key="payment.id">{{payment.student.user.name}}
-                                        </li>
-                                    </ul>
+                                <div class="flex bg-white overflow-hidden shadow-xl w-full h-1/2 mx-auto p-8 rounded-xl">
+                                    <table class="table-auto">
+                                        <thead>
+                                            <tr>
+                                                <th>Newest Payment</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr v-for="payment in payments " :key="payment.id">{{payment.student.user.name}}
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -106,6 +98,7 @@
     import Card from '@/Jetstream/Card'
     import ApexCharts from 'vue3-apexcharts'
     import numeral from 'numeral'
+    import TableComponent from '@/component/TableComponent'
 
     export default {
         props: ['paymentOfTheMonth', 'paymentOfTheYear', 'totalStudent', 'totalOfficer', 'months', 'totalPayments',
@@ -115,6 +108,7 @@
             AppLayout,
             Card,
             apexchart: ApexCharts,
+            TableComponent
         },
         data: function () {
             let result = this.months.map(month => {
@@ -124,7 +118,7 @@
             return {
                 chartOptions: {
                     chart: {
-                        id: "vuechart-example",
+                        id: "monthly",
                     },
                     xaxis: {
                         categories: this.months,
@@ -139,15 +133,15 @@
                             },
                         },
                     },
+                    colors:['#10B981', '#6EE7B7', '#1D4ED8']
                 },
-               sparkline: {
-                enabled: true
+                sparkline: {
+                    enabled: true
                 },
                 series: [{
-                    name: "series-1",
+                    name: "Total",
                     data: result,
                 }, ],
-
             };
         },
         methods: {
