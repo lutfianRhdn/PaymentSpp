@@ -10,7 +10,7 @@
                         <div class="flex justify-between  py-3 px-6">
 
                           <div class="flex align-center">
-                            <label for="search" class="my-auto">Search</label>
+                            <label for="search" class="my-auto mr-2">Search</label>
                             <input class="border border-gray-300 focus:border-indigo-300 px-3 py-1 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm" v-model="search" @keyup="submitSearch()" >
                         </div>
                 <button-component bg="bg-gray-400" @click="downloadExcel" v-if="$page.props.auth.role == 'admin'">

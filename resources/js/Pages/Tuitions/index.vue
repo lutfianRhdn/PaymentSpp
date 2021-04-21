@@ -8,7 +8,7 @@
                 <div class="bg-white overflow-hidden shadow-xl w-4/5 mx-auto rounded-lg mb-10">
                     <card title="Tuition Management" createLink="tuitions.create" createPermission="tuition.create">
                         <div class="flex align-center mx-5 my-2">
-                            <label for="search" class="my-auto">Search</label>
+                            <label for="search" class="my-auto mr-2">Search</label>
                             <input class="border border-gray-300 focus:border-indigo-300 px-3 py-1 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm" v-model="search" @keyup="submitSearch()" >
                         </div>
                         <table-component  :paginationLinks="newTuition.links">

@@ -9,7 +9,7 @@
                     <card title="Student Management" createLink="students.create" createPermission="user.create">
                         
                         <div class="flex align-center mx-5 my-2">
-                            <label for="search" class="my-auto">Search</label>
+                            <label for="search" class="my-auto mr-2">Search</label>
                             <input class="border border-gray-300 focus:border-indigo-300 px-3 py-1 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm" v-model="search" @keyup="submitSearch()" >
                         </div>
                         <table-component :paginationLinks="newStudents.links">
