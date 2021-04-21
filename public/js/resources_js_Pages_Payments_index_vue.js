@@ -1660,7 +1660,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             })
           }, null, 544
           /* HYDRATE_EVENTS, NEED_PATCH */
-          ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.search]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_button_component, {
+          ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.search]])]), _ctx.$page.props.auth.role == 'admin' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_button_component, {
+            key: 0,
             bg: "bg-gray-400",
             onClick: $options.downloadExcel
           }, {
@@ -1672,7 +1673,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
           }, 8
           /* PROPS */
-          , ["onClick"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_table_component, {
+          , ["onClick"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_table_component, {
             paginationLinks: $data.newPayment.links
           }, {
             header: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {

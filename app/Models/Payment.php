@@ -53,4 +53,29 @@ class Payment extends Model
         
     return true;
     }
+    public function search($keyword)
+    {
+       return  Payment::with('tuition')
+        ->where(function($query)use($keyword){
+            $query->where('month','LIKE',"%{$keyword}%");
+            $query->orWhere('year','LIKE',"%{$keyword}%");
+            $query->orWhere('nominal','LIKE',"%{$keyword}%");
+            // WHERE USER
+            $query->orWhereHas('student',function($q)use($keyword){
+                $q->whereHas('user',function($q)use($keyword){
+                    $q->where('name','LIKE',"%{$keyword}%");
+                });
+            });
+            $query->orWhereHas('officer',function($q)use($keyword){
+                $q->whereHas('user',function($q)use($keyword){
+                    $q->where('name','LIKE',"%{$keyword}%");
+                });
+            });
+        })
+        ->with('student',function($q){
+            $q->with('user');
+        })->with('officer',function($q){
+            $q->with('user');
+        });
+    }
 }

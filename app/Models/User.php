@@ -83,7 +83,10 @@ class User extends Authenticatable
         });
 
     }
-
+    public function getRole()
+    {
+        return $this->roles[0]->name;
+    }
     public function createStudent($data)
     {
         $password = Str::random(8);
