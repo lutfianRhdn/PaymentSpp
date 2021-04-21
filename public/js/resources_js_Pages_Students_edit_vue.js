@@ -449,36 +449,37 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     createStudent: function createStudent() {
-      if (this.$refs.photo) {
-        this.form.photo = this.$refs.photo.files[0];
-      } // alert(this.form.class)
+      var _this = this;
 
-
-      this.form.put(route('students.update', this.student), {
-        preserveScroll: true
+      this.form.patch(route('students.update', this.student), {
+        preserveScroll: true,
+        onprogress: function onprogress(res) {
+          return console.log(res, _this.form);
+        }
       });
     },
     selectNewPhoto: function selectNewPhoto() {
       this.$refs.photo.click();
     },
     updatePhotoPreview: function updatePhotoPreview() {
-      var _this = this;
+      var _this2 = this;
 
       var reader = new FileReader();
 
       reader.onload = function (e) {
-        _this.photoPreview = e.target.result;
+        _this2.photoPreview = e.target.result;
+        _this2.form.photo = _this2.$refs.photo.files[0];
       };
 
       reader.readAsDataURL(this.$refs.photo.files[0]);
     },
     deletePhoto: function deletePhoto() {
-      var _this2 = this;
+      var _this3 = this;
 
       this.$inertia["delete"](route('current-user-photo.destroy'), {
         preserveScroll: true,
         onSuccess: function onSuccess() {
-          return _this2.photoPreview = null;
+          return _this3.photoPreview = null;
         }
       });
     }
@@ -1551,18 +1552,13 @@ var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(
 var _hoisted_26 = {
   "class": "mt-2"
 };
-
-var _hoisted_27 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Select A New Photo ");
-
-var _hoisted_28 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Remove Photo ");
-
-var _hoisted_29 = {
+var _hoisted_27 = {
   "class": "flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6 shadow sm:rounded-bl-md sm:rounded-br-md"
 };
 
-var _hoisted_30 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Updated. ");
+var _hoisted_28 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Updated. ");
 
-var _hoisted_31 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Update");
+var _hoisted_29 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Update");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_input_component = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("input-component");
@@ -1570,8 +1566,6 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_input_error = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("input-error");
 
   var _component_jet_label = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("jet-label");
-
-  var _component_jet_secondary_button = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("jet-secondary-button");
 
   var _component_action_message = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("action-message");
 
@@ -1594,7 +1588,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             onSubmit: _cache[9] || (_cache[9] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
               return $options.createStudent && $options.createStudent.apply($options, arguments);
             }, ["prevent"])),
-            action: "{{route('student.store')}}"
+            action: "{{route('student.store')}}",
+            enctype: "multipart/form-data"
           }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_9, [_hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_input_component, {
             type: "text",
             "class": "w-full",
@@ -1714,38 +1709,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           /* STYLE */
           )], 512
           /* NEED_PATCH */
-          ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $data.photoPreview]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_secondary_button, {
-            "class": "mt-2 mr-2",
-            type: "button",
-            onClick: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)($options.selectNewPhoto, ["prevent"])
-          }, {
-            "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-              return [_hoisted_27];
-            }),
-            _: 1
-            /* STABLE */
-
-          }, 8
-          /* PROPS */
-          , ["onClick"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_secondary_button, {
-            type: "button",
-            "class": "mt-2",
-            onClick: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)($options.deletePhoto, ["prevent"])
-          }, {
-            "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-              return [_hoisted_28];
-            }),
-            _: 1
-            /* STABLE */
-
-          }, 8
-          /* PROPS */
-          , ["onClick"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <jet-input-error :message=\"form.errors.photo\" class=\"mt-2\" /> ")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_29, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_action_message, {
+          ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $data.photoPreview]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <jet-secondary-button class=\"mt-2 mr-2\" type=\"button\" @click.prevent=\"selectNewPhoto\">\r\n                                            Select A New Photo\r\n                                        </jet-secondary-button>\r\n\r\n                                        <jet-secondary-button type=\"button\" class=\"mt-2\" @click.prevent=\"deletePhoto\" >\r\n                                            Remove Photo\r\n                                        </jet-secondary-button> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <jet-input-error :message=\"form.errors.photo\" class=\"mt-2\" /> ")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_27, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_action_message, {
             on: $data.form.recentlySuccessful,
             "class": "mr-3"
           }, {
             "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-              return [_hoisted_30];
+              return [_hoisted_28];
             }),
             _: 1
             /* STABLE */
@@ -1757,7 +1726,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             bg: "bg-green-400 hover:bg-green-600"
           }, {
             "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-              return [_hoisted_31];
+              return [_hoisted_29];
             }),
             _: 1
             /* STABLE */

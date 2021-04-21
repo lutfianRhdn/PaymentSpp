@@ -1134,8 +1134,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         title: "Show Student "
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("img", {
-            src: $props.student.user.profile_photo_path == null ? $props.student.user.profile_photo_url + '&size=512' : '',
+          return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)() + " ", 1
+          /* TEXT */
+          ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("img", {
+            src: $props.student.user.profile_photo_path == null ? $props.student.user.profile_photo_url + '&size=512' : '/storage' + $props.student.user.profile_photo_path.substring(6),
             "class": "w-1/4 shadow-lg",
             alt: $props.student.user.name
           }, null, 8

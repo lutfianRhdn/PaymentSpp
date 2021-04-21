@@ -4,13 +4,12 @@ require('./bootstrap');
 import { createApp, h } from 'vue';
 import { App as InertiaApp, plugin as InertiaPlugin } from '@inertiajs/inertia-vue3';
 import { InertiaProgress } from '@inertiajs/progress';
-import VueNumerals from 'vue-numerals';
 
 
 const el = document.getElementById('app');
 InertiaProgress.init()
 
-const app = createApp({
+createApp({
     render: () =>
     h(InertiaApp, {
         initialPage: JSON.parse(el.dataset.page),
@@ -22,10 +21,9 @@ const app = createApp({
 .mount(el); 
 
 // library.add(faUserSecret)
-app.use(VueNumerals); // default locale is 'en'
 
 // h.component('font-awesome-icon', FontAwesomeIcon)
 
-h.Vue.config.productionTip = false
+// h.Vue.config.productionTip = false
 
 InertiaProgress.init({ color: '#4B5563' });

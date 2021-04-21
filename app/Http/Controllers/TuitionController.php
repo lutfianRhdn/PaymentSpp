@@ -14,6 +14,13 @@ class TuitionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('permission:tuition.index')->only('index');
+        $this->middleware('permission:tuition.create')->only('create');
+        $this->middleware('permission:tuition.update')->only('update');
+        $this->middleware('permission:tuition.delete')->only('destroy');
+    }
     private $year;
     public function index()
     {

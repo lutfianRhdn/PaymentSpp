@@ -1,12 +1,12 @@
 <template>
     <app-layout>
         <template #header>
-            <h1>payment Management</h1>
+            <h1>Payment Management</h1>
         </template>
         <div class="">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-xl w-4/5 mx-auto rounded-lg mb-10">
-                    <card title="payment Management" createLink="payments.create" createPermission="payment.create">
+                    <card title="Payment Management" createLink="payments.create" createPermission="payment.create">
                         <div class="flex justify-between  py-3 px-6">
 
                           <div class="flex align-center">

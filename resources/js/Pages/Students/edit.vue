@@ -8,7 +8,7 @@
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="overflow-hidden w-4/5 mx-auto rounded-lg">
                     <card title="Create New Student">
-                        <form @submit.prevent="createStudent" action="{{route('student.store')}}">
+                        <form @submit.prevent="createStudent" action="{{route('student.store')}}" enctype="multipart/form-data">
                             <div class="px-4 py-5 bg-white sm:p-6 ">
                                 <div class="flex justify-around md:flex-row flex-col">
                                     <div class="">
@@ -81,13 +81,13 @@
                                             </span>
                                         </div>
 
-                                        <jet-secondary-button class="mt-2 mr-2" type="button" @click.prevent="selectNewPhoto">
+                                        <!-- <jet-secondary-button class="mt-2 mr-2" type="button" @click.prevent="selectNewPhoto">
                                             Select A New Photo
                                         </jet-secondary-button>
 
                                         <jet-secondary-button type="button" class="mt-2" @click.prevent="deletePhoto" >
                                             Remove Photo
-                                        </jet-secondary-button>
+                                        </jet-secondary-button> -->
 
                                         <!-- <jet-input-error :message="form.errors.photo" class="mt-2" /> -->
                                     </div>
@@ -153,13 +153,9 @@ import ActionMessage from '@/Jetstream/ActionMessage'
         },
         methods: {
             createStudent() {
-                if (this.$refs.photo) {
-                    this.form.photo = this.$refs.photo.files[0]
-                }
-
-                    // alert(this.form.class)
-                this.form.put(route('students.update',this.student), {
-                    preserveScroll: true
+                this.form.patch(route('students.update',this.student), {
+                    preserveScroll: true,
+                    onprogress:(res)=>console.log(res,this.form)
                 });
             },
 
@@ -172,6 +168,7 @@ import ActionMessage from '@/Jetstream/ActionMessage'
 
                 reader.onload = (e) => {
                     this.photoPreview = e.target.result;
+                    this.form.photo =this.$refs.photo.files[0]
                 };
 
                 reader.readAsDataURL(this.$refs.photo.files[0]);

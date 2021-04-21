@@ -8,7 +8,8 @@
                 <div class="bg-white overflow-hidden shadow-xl w-4/5 mx-auto rounded-lg">
                     <card title="Show Student " > 
                         <div class="mx-10 flex mb-5">
-                            <img v-bind:src="student.user.profile_photo_path == null ? student.user.profile_photo_url+'&size=512' : '' " class="w-1/4 shadow-lg" :alt=" student.user.name">
+                            {{}}
+                            <img :src="student.user.profile_photo_path == null ? student.user.profile_photo_url+'&size=512' : '/storage'+student.user.profile_photo_path.substring(6) " class="w-1/4 shadow-lg" :alt=" student.user.name">
                             <div  class="mx-5">
                                 <h1 class="text-3xl font-bold uppercase">{{student.user.name}}  <span class="font-normal"> | {{student.class.level}} {{student.class.major.label}} {{student.class.label}} </span></h1>
                                 <h2 class="text-xl capitalize font-thin	">{{ student.user.email}}</h2>

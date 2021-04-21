@@ -12,7 +12,7 @@
                 <div class="flex mx-auto lg:my-10 md:my-9 sm:my-8 lg:px-10 md:px-9 sm:px-8 gap-2">
 
                     <div
-                        class="flex bg-white overflow-hidden shadow-xl lg:w-1/4 lg:h-1/2 md:w-1/4 md:h-1/2 sm:w-1/5 sm:h-2/5 mx-auto lg:p-5 md:p-3.5 sm:p-2.5 rounded-xl">
+                        class="flex bg-white overflow-hidden shadow-xl lg:w-1/4 lg:h-1/2 md:w-1/4 md:h-1/2 sm:w-1/5 sm:h-2/5 mx-auto lg:p-5 md:p-3.5 sm:p-2.5 rounded-xl" v-if="$page.props.auth.role != 'student'">
                         <div class="flex flex-row items-center">
                             <div class="flex px-1">
                                 <div class="rounded-full lg:p-3 sm:p-0 bg-gray-200">
@@ -29,7 +29,7 @@
                     </div>
 
                     <div
-                        class="flex bg-white overflow-hidden shadow-xl lg:w-1/3 lg:h-1/2 sm:w-1/3 sm:h-1/2 mx-auto lg:p-8 sm:p-8 rounded-xl">
+                        class="flex bg-white overflow-hidden shadow-xl w-full lg:w-1/3 lg:h-1/2 sm:w-1/3 sm:h-1/2 mx-auto lg:p-8 sm:p-8 rounded-xl">
                         <div class="flex flex-row items-center">
                             <div class="flex-shrink pr-4">
                                 <div class="rounded-full p-3 bg-gray-200">
@@ -37,7 +37,7 @@
                                 </div>
                             </div>
                             <div class="flex flex-col items-center">
-                                <h3 class="font-bold lg:text-3xl sm:text-xl">Rp.{{ paymentOfTheYear }} <span
+                                <h3 class="font-bold lg:text-3xl sm:text-xl">Rp.{{ changeFormat(paymentOfTheYear) }} <span
                                         class="text-green-500"><i class="fas fa-caret-up"></i></span></h3>
                                 <h5 class="font-bold text-gray-500 text-center lg:text-base sm:text-xs">Payment of The
                                     Year</h5>
@@ -45,7 +45,7 @@
                         </div>
                     </div>
 
-                    <div class="flex bg-white overflow-hidden shadow-xl lg:w-1/4 lg:h-1/2 mx-auto lg:p-8 rounded-xl">
+                    <div class="flex bg-white overflow-hidden shadow-xl lg:w-1/4 lg:h-1/2 mx-auto lg:p-8 rounded-xl" v-if="$page.props.auth.role == 'admin'">
                         <div class="flex flex-row items-center">
                             <div class="flex-shrink pr-4">
                                 <div class="rounded-full p-3 bg-gray-200">
@@ -66,8 +66,7 @@
                         <div class="flex flex-row items-center w-full justify-between">
 
                             <apexchart width="500" type="area" :options="chartOptions" :series="series"></apexchart>
-                            
-                            <div class="flex flex-col items-center">
+                            <div class="flex flex-col items-center" v-if="$page.props.auth.can['payment.create']">
                                 <div class="flex flex-col bg-white overflow-hidden shadow-md w-full h-1/2 mx-auto p-8 rounded-xl">
                                     <h1 class="font-bold text-gray-500 text-center lg:text-base sm:text-xs ">News Payment</h1>
                                     <hr>
@@ -157,10 +156,8 @@
                 const data = this.totalPayments.filter(el => el.month == month)
                 return data.length !== 0 ? data[0].nominal : 0
             },
-            kFormatter(num) {
-                return Math.abs(num) > 999 ? Math.sign(num) * ((Math.abs(num) / 1000).toFixed(1)) + 'k' : Math.sign(
-                    num) * Math.abs(num)
-            }
+            changeFormat: (num) => numeral(num).format('0,0')
+
 
         }
     }

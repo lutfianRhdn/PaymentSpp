@@ -19,6 +19,13 @@ class PaymentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('permission:payment.index')->only('index');
+        $this->middleware('permission:payment.create')->only('create');
+        $this->middleware('permission:payment.update')->only('update');
+        $this->middleware('permission:payment.delete')->only('destroy');
+    }
     protected $months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
     public function index()

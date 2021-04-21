@@ -14,6 +14,13 @@ class ClassController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('permission:class.index')->only('index');
+        $this->middleware('permission:class.create')->only('create');
+        $this->middleware('permission:class.update')->only('update');
+        $this->middleware('permission:class.delete')->only('destroy');
+    }
     public function index()
     {
         $classes = Classes::with('students')->with('major')->paginate(5);

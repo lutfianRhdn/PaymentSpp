@@ -16,6 +16,7 @@
                             <template #header>
                                 <th class="py-3">#</th>
                                 <th class="py-3">Nisn</th>
+                                <th class="py-3">Nis</th>
                                 <th class="py-3">Name</th>
                                 <th class="py-3">class</th>
                                 <th class="py-3">Action</th>
@@ -25,6 +26,9 @@
                                     v-for="(student,index) in newStudents.data" :key="student.id">
                                     <td class="py-3 px-6 text-center whitespace-nowrap">
                                         <p class="font-medium text-center">{{ ++index }}</p>
+                                    </td>
+                                    <td class="py-3 px-6 text-center whitespace-nowrap">
+                                        <p class="font-medium text-center">{{ student.nisn   }}</p>
                                     </td>
                                     <td class="py-3 px-6 text-center whitespace-nowrap">
                                         <p class="font-medium text-center">{{ student.nis }}</p>

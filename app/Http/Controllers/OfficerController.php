@@ -13,6 +13,13 @@ class OfficerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('permission:user.index')->only('index');
+        $this->middleware('permission:user.create')->only('create');
+        $this->middleware('permission:user.update')->only('update');
+        $this->middleware('permission:user.delete')->only('destroy');
+    }
     public function index()
     {
         
