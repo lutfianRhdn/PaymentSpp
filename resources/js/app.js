@@ -25,4 +25,5 @@ createApp({
 // h.component('font-awesome-icon', FontAwesomeIcon)
 
 h.Vue.config.productionTip = false
+
 InertiaProgress.init({ color: '#4B5563' });
