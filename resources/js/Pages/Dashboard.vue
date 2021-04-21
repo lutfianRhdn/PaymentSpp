@@ -68,7 +68,9 @@
                             <apexchart width="500" type="area" :options="chartOptions" :series="series"></apexchart>
                             
                             <div class="flex flex-col items-center">
-                                <div class="flex bg-white overflow-hidden shadow-xl w-full h-1/2 mx-auto p-8 rounded-xl">
+                                <div class="flex flex-col bg-white overflow-hidden shadow-md w-full h-1/2 mx-auto p-8 rounded-xl">
+                                    <h1 class="font-bold text-gray-500 text-center lg:text-base sm:text-xs ">News Payment</h1>
+                                    <hr>
                                     <table class="table-fixed">
                                         <thead>
                                             <tr>
@@ -85,8 +87,8 @@
                                             </tr>
                                         </tbody>
                                     </table>
-                                    <div class="flex justify-items-end">    
-                                        <inertia-link :href="route('payments.index')" class="underline text-sm text-gray-600 hover:text-gray-900">More</inertia-link>
+                                    <div class="h-full ml-auto mt-5">    
+                                        <inertia-link :href="route('payments.index')" class="bg-blue-500 px-4 rounded py-2 shadow-md text-sm text-white hover:text-white-900 hover:bg-blue-400 fade ">Go to More...</inertia-link>
                                     </div>
                                 </div>
                             </div>

@@ -2226,7 +2226,7 @@ var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("
 );
 
 var _hoisted_4 = {
-  "class": " mb-5 "
+  "class": " mb-5 mt-10 "
 };
 
 var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h1", {
@@ -2246,10 +2246,10 @@ var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("
 );
 
 var _hoisted_7 = {
-  "class": "ml-5"
+  "class": "ml-5 -mt-5"
 };
 var _hoisted_8 = {
-  "class": "rounded-lg px-4 py-2 my-1  hover:bg-gray-200 hover:shadow"
+  "class": "rounded-lg px-4 py-2 mb-2  hover:bg-gray-200 hover:shadow"
 };
 var _hoisted_9 = {
   "class": "text-sm"
@@ -2264,7 +2264,7 @@ var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(
 var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Student Management ");
 
 var _hoisted_12 = {
-  "class": "rounded-lg px-4 py-2 my-3  hover:bg-gray-200 hover:shadow"
+  "class": "rounded-lg px-4 py-2 mb-2  hover:bg-gray-200 hover:shadow"
 };
 var _hoisted_13 = {
   "class": "text-sm"
@@ -2302,13 +2302,6 @@ var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(
 /* HOISTED */
 );
 
-var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", {
-  "class": "block px-4 py-2 mt-2 text-sm font-semibold text-gray-900 \r\n    bg-gray-200 rounded-lg dark-mode:bg-gray-700 dark-mode:hover:bg-gray-600 \r\n    dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white \r\n    dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 \r\n    focus:outline-none focus:shadow-outline",
-  href: "#"
-}, "Blog", -1
-/* HOISTED */
-);
-
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_inertia_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("inertia-link");
 
@@ -2333,7 +2326,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
-        "class": ["rounded-lg px-4 py-2 my-3 hover:bg-gray-200 hover:shadow", {
+        "class": ["rounded-lg px-4 py-2 mb-2 hover:bg-gray-200 hover:shadow", {
           'border-l border-green-500 border-l-4 ': $data.activeTab == 'class'
         }]
       }, [_hoisted_5], 2
@@ -2351,7 +2344,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, {
     trigger: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
-        "class": ["rounded-lg px-4 py-2 my-3  hover:bg-gray-200 hover:shadow", {
+        "class": ["rounded-lg px-4 py-2 mb-2  hover:bg-gray-200 hover:shadow", {
           'active': _ctx.$inertia.page.url.startsWith(_ctx.href)
         }]
       }, [_hoisted_6], 2
@@ -2395,7 +2388,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
-        "class": ["rounded-lg px-4 py-2  my-3 hover:bg-gray-200 hover:shadow", {
+        "class": ["rounded-lg px-4 py-2  mb-2 hover:bg-gray-200 hover:shadow", {
           'booder-l border-green-500 border-l-4 ': $data.activeTab == 'class'
         }]
       }, [_hoisted_16], 2
@@ -2413,7 +2406,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
-        "class": ["rounded-lg px-4 py-2  my-3 hover:bg-gray-200 hover:shadow", {
+        "class": ["rounded-lg px-4 py-2  mb-2 hover:bg-gray-200 hover:shadow", {
           'booder-l border-green-500 border-l-4 ': $data.activeTab == 'class'
         }]
       }, [_hoisted_17], 2
@@ -2431,7 +2424,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
-        "class": ["rounded-lg px-4 py-2  my-3 hover:bg-gray-200 hover:shadow", {
+        "class": ["rounded-lg px-4 py-2  mb-2 hover:bg-gray-200 hover:shadow", {
           'booder-l border-green-500 border-l-4 ': $data.activeTab == 'class'
         }]
       }, [_hoisted_18], 2
@@ -2462,8 +2455,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     _: 1
     /* STABLE */
 
-  })]), _hoisted_19], 64
-  /* STABLE_FRAGMENT */
+  })])], 2112
+  /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */
   );
 }
 
