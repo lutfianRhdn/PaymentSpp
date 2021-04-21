@@ -78,9 +78,7 @@
                                         </thead>
                                         <tbody>
                                             <tr v-for="payment in payments " :key="payment.id">
-                                                    <td>{{payment.student.user.name}}</td>
-                                                <!-- <div class="mx-2">
-                                                </div> -->
+                                                <td>{{payment.student.user.name}}</td>
                                                 <div class="ml-6">
                                                     <td>{{payment.month}}</td>
                                                 </div>
