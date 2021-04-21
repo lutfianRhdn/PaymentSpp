@@ -85,6 +85,9 @@
                                             </tr>
                                         </tbody>
                                     </table>
+                                    <div class="flex justify-items-end">    
+                                        <inertia-link :href="route('payments.index')" class="underline text-sm text-gray-600 hover:text-gray-900">More</inertia-link>
+                                    </div>
                                 </div>
                             </div>
 

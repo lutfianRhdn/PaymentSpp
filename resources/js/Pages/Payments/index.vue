@@ -57,9 +57,6 @@
                                 </tr>   
                             </template>
                         </table-component>
-                        <button-component bg="bg-gray-400" @click="downloadExcel">
-                            Export to Excel
-                        </button-component>
                     </card>
                 </div>
             </div>
