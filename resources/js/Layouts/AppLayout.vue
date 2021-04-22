@@ -5,7 +5,7 @@
             <div class="md:flex flex-col md:flex-row w-full relative ">
                     <sidebar />
                 <div class=" md:w-5/6 sm:w-full md:ml-auto  ">
-                    <div class=" h-64   bg-green-500 ">
+                    <div class=" h-64   bg-cyan-medium ">
                         <div class="">
                             <div class="flex md:ml-10 justify-between px-5 pt-4 z-10">
                                 <div class="mt-6">

@@ -2,8 +2,8 @@
     <div class="relative">
         <div @click="open = ! open" class="flex items-center">
             <slot name="trigger"></slot>
-            <i class="fas fa-sort-down"  v-show="!open"></i>
-            <i class="fas fa-sort-up" v-show="open"></i>
+            <i class="fas fa-sort-down text-blue-500"  v-show="!open"></i>
+            <i class="fas fa-sort-up text-blue-500" v-show="open"></i>
         </div>
 
         <!-- Full Screen Dropdown Overlay -->
@@ -42,7 +42,7 @@ export default {
             default: '48'
         },
         contentClasses: {
-            default: () => ['py-1', 'bg-white']
+            default: () => ['py-1', 'bg-cyan-light']
         }
     },
 

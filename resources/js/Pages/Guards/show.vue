@@ -6,7 +6,7 @@
             <div class="">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-xl w-4/5 mx-auto rounded-lg">
-                    <card title="Show Student " > 
+                    <card title="Show Officer " > 
                         <div class="mx-10 flex mb-5 my-5">
                             <img v-bind:src="guard.user.profile_photo_path == null ? guard.user.profile_photo_url+'&size=512' : '' " class="w-1/4 shadow-lg" :alt=" guard.user.name">
                             <div  class="mx-5">

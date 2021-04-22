@@ -3593,6 +3593,22 @@ select {
   background-color: currentColor;
 }
 
+.bg-brown {
+  --tw-bg-opacity: 1;
+  background-color: rgba(133, 96, 63, var(--tw-bg-opacity));
+}
+
+.bg-cyan-medium {
+  --tw-bg-opacity: 1;
+  background-color: rgba(166, 220, 239, var(--tw-bg-opacity));
+}
+
+.bg-cyan-light {
+  --tw-bg-opacity: 1;
+  background-color: rgba(218, 241, 249, var(--tw-bg-opacity));
+}
+
+
 .bg-black {
   --tw-bg-opacity: 1;
   background-color: rgba(0, 0, 0, var(--tw-bg-opacity));
@@ -4009,6 +4025,11 @@ select {
 
 .group:hover .group-hover\:bg-current {
   background-color: currentColor;
+}
+
+.group:hover .group-hover\:bg-cyan-medium {
+  --tw-bg-opacity: 1;
+  background-color: rgba(166, 220, 239, var(--tw-bg-opacity));
 }
 
 .group:hover .group-hover\:bg-black {
