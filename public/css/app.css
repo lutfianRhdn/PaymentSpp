@@ -3593,11 +3593,6 @@ select {
   background-color: currentColor;
 }
 
-.bg-brown {
-  --tw-bg-opacity: 1;
-  background-color: rgba(133, 96, 63, var(--tw-bg-opacity));
-}
-
 .bg-cyan-medium {
   --tw-bg-opacity: 1;
   background-color: rgba(166, 220, 239, var(--tw-bg-opacity));
