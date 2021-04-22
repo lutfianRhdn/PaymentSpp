@@ -34,10 +34,10 @@
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                 <inertia-link :href="route('register')" class="ml-4 text-sm text-gray-500 underline italic">
+                 <!-- <inertia-link :href="route('register')" class="ml-4 text-sm text-gray-500 underline italic">
                         i dont have an account
                     </inertia-link>
-                
+                 -->
 
                 <jet-button class="ml-4 rounded-md bg-blue-500 hover:bg-blue-700" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                     Log in

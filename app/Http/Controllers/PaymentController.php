@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\PaymentExport;
 use App\Models\Classes;
 use App\Models\Guard;
 use App\Models\Payment;
 use App\Models\Student;
 use App\Models\Tuition;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 use Inertia\Inertia;
 
 class PaymentController extends Controller
@@ -17,11 +19,24 @@ class PaymentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('permission:payment.index')->only('index');
+        $this->middleware('permission:payment.create')->only('create');
+        $this->middleware('permission:payment.update')->only('update');
+        $this->middleware('permission:payment.delete')->only('destroy');
+    }
     protected $months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
     public function index()
     {
-        $payments = $this->filterPayment();
+        $data = Payment::with('tuition')
+        ->with('student',function($q){
+            $q->with('user');
+        })->with('officer',function($q){
+            $q->with('user');
+        });
+        $payments = $this->filterPayment($data)->paginate(5);
         return Inertia::render('Payments/index',compact('payments'));
     }
 
@@ -53,7 +68,7 @@ class PaymentController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'photo'=>'required|image|size:2046',
+            'photo'=>'required|image|max:2046',
             'student'=>'required',
             'month'=>'required'
         ]); 
@@ -72,8 +87,14 @@ class PaymentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        //
+    {$data = Payment::with('tuition')
+        ->with('student',function($q){
+            $q->with('user');
+        })->with('officer',function($q){
+            $q->with('user');
+        });
+        $payments = $this->filterPayment($data)->where('student_id',$id)->paginate(5);
+        return Inertia::render('Payments/show',compact('payments'));
     }
 
     /**
@@ -115,31 +136,35 @@ class PaymentController extends Controller
         $students = Student::where('class_id',$id)->with('user')->get();
         $newStudents =[];
         foreach ($students as $student) {
-            // dd($student);
             array_push($newStudents,collect(['value'=>$student->id,'name'=>$student->user->name]));
         }
-        // dd(collect($newStudents));
         return collect($newStudents);
     }
 
-    public function filterPayment()
+    public function filterPayment($data)
     {
-        $data = Payment::with('tuition')
-        ->with('student',function($q){
-            $q->with('user');
-        })->with('officer',function($q){
-            $q->with('user');
-        });
+        
         $result= [];
         if (auth()->user()->hasRole('admin')) {
             $result = $data;
         }elseif (auth()->user()->hasRole('guard')) {
             $result = $data->where('guard_id',auth()->user()->officer->id);
         }else{
-            // dd(auth()->user()->student);
             $result = $data->where('student_id',auth()->user()->student->id);
         }
-        return $result->paginate(5);
+        return $result;
     }
-
+    public function export()
+    {
+        return Excel::download(new PaymentExport(),'Payment.xlsx');
+    }
+    public function where()
+    {
+        $keyword = request()->search;
+        $model  = new Payment;
+        $data = $model->search($keyword);
+        
+        $payments = $this->filterPayment($data)->paginate(100);
+        return $payments;
+    }
 }

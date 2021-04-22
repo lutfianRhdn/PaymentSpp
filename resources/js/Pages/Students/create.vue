@@ -33,8 +33,6 @@
                                         </div>
                                         <div class=" my-3  ">
                                             <label for="Name" class="block"> Class : </label>
-                                            <!-- <input-component  type="text" class="w-full" v-model="form.name"/> -->
-                                            <!-- <select2 :options="['select1','select2']" /> -->
                                             <select name="class" id="class" v-model="form.class">
                                                 <option  v-for="clas in classes" :value="clas.id"  :key="clas.id">
                                                      {{ clas.level }} {{clas.major.label}} {{clas.label}}
@@ -121,7 +119,6 @@
     import JetSecondaryButton from '@/Jetstream/SecondaryButton'
     import ButtonComponent from '@/Jetstream/Button'
 import InputError from '../../Jetstream/InputError.vue'
-// import Select2 from 'v-select2-component';
 import ActionMessage from '@/Jetstream/ActionMessage'
 
     export default {

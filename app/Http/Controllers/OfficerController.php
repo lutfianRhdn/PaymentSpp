@@ -13,10 +13,17 @@ class OfficerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('permission:user.index')->only('index');
+        $this->middleware('permission:user.create')->only('create');
+        $this->middleware('permission:user.update')->only('update');
+        $this->middleware('permission:user.delete')->only('destroy');
+    }
     public function index()
     {
         
-        $guards = Guard::with('user')->paginate(5);
+        $guards = Guard::with('user')->where('user_id','!=',auth()->id())->paginate(5);
         return Inertia::render('Guards/index',compact('guards')) ;
     }
 
@@ -42,10 +49,8 @@ class OfficerController extends Controller
             'name'=>'required',
             'email'=>'required|email|unique:users',
         ]);
-        // dd($request);
         $userModel =new User;
         $userModel->createOfficer($request);
-        // return true;
         return redirect()->route('guards.index')->with('successMesage','Officer was succcessfuly added ');
     }
 
@@ -58,7 +63,6 @@ class OfficerController extends Controller
     public function show(Guard $guard)
     {
         $guard = Guard::with('user')->find($guard->id);
-        // dd($guard);
         return Inertia::render('Guards/show',compact('guard'));
     }
 
@@ -105,11 +109,17 @@ class OfficerController extends Controller
         $this->validate(request(),[
             'email'=>'required'
         ]);
-        // dd($guard,request());
         if (request()->email !== $guard->user->email) {
             return redirect()->back()->withInput()->withErrors(['email'=>'email you entered is wrong']);
         }
         $guard->user()->delete();
         return redirect()->back()->with('successMesage','Officer was Successfuly Deleted');
+    }
+    // custom
+    public function where()
+    {
+        $model = new Guard;
+        $officers = $model->search(request()->search);
+        return $officers;
     }
 }

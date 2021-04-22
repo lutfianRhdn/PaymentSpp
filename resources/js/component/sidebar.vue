@@ -19,7 +19,7 @@
                         <h1 class="text-2xl text-blue-500 mx-auto">Spp Payment</h1>
                     </div>
                     <div>
-                        <div class=" mb-5 ">
+                        <div class=" mb-5 mt-10 ">
                             <inertia-link :href="route('dashboard')" >
                                 <div class="rounded-lg px-4 py-2 mb-2 hover:bg-blue-200 hover:shadow" :class="{'border-l border-green-500 border-l-4 ' : activeTab == 'class'}">
                                     <h1 class="text-lg text-blue-500"><i class="fas fa-tachometer-alt text-2xl mr-5"></i> Dashboard</h1>
@@ -43,7 +43,6 @@
                                                 <inertia-link :href="route('guards.index')" class="text-md"  >Officer Management </inertia-link>
                                             </h1>
                                         </div>
-                                        
                                         
                                     </div>
                                 </template>
@@ -78,12 +77,6 @@
                 class="flex-1 bg-gray-400 bg-opacity-75 active:outline-none z-10" />
         </transition>
     </div>
-
-    <a class="block px-4 py-2 mt-2 text-sm font-semibold text-gray-900 
-    bg-gray-200 rounded-lg dark-mode:bg-gray-700 dark-mode:hover:bg-gray-600 
-    dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white 
-    dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 
-    focus:outline-none focus:shadow-outline" href="#">Blog</a>
 
 </template>
 

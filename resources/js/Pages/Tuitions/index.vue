@@ -7,8 +7,11 @@
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-xl w-4/5 mx-auto rounded-lg mb-10">
                     <card title="Tuition Management" createLink="tuitions.create" createPermission="tuition.create">
-                        <action-message> <h1>ok</h1> </action-message>
-                        <table-component  :paginationLinks="tuitions.links">
+                        <div class="flex align-center mx-5 my-2">
+                            <label for="search" class="my-auto mr-2">Search</label>
+                            <input class="border border-gray-300 focus:border-indigo-300 px-3 py-1 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm" v-model="search" @keyup="submitSearch()" >
+                        </div>
+                        <table-component  :paginationLinks="newTuition.links">
                             <template #header>
                                 <th class="py-3">#</th>
                                 <th class="py-3">Year of Study</th>
@@ -18,7 +21,7 @@
                             </template>
                             <template #content>
                                 <tr class="border-b border-gray-200 hover:bg-gray-100"
-                                    v-for="(tuition,index) in tuitions.data" :key="tuition.id">
+                                    v-for="(tuition,index) in newTuition.data" :key="tuition.id">
                                     <td class="py-3 px-6 text-center whitespace-nowrap">
                                         <p class="font-medium text-center">{{ ++index }}</p>
                                     </td>
@@ -27,10 +30,10 @@
                                         <p class="font-medium text-center">{{ tuition.year }}  </p>
                                     </td>
                                     <td class="py-3 px-6 text-center whitespace-nowrap">
-                                        <p class="font-medium text-center">{{ tuition.nominal }}</p>
+                                        <p class="font-medium text-center">{{changeFormat(tuition.nominal) }}</p>
                                     </td>
                                     <td class="py-3 px-6 text-center whitespace-nowrap">
-                                        <p class="font-medium text-center">{{ tuition.totalPayment }}</p>
+                                        <p class="font-medium text-center">{{ tuition.totalPayment}}</p>
                                     </td>
                                 
                                     <td
@@ -90,6 +93,7 @@ import ActionMessage from '@/Jetstream/ActionMessage.vue'
 import DialogModal from '@/Jetstream/DialogModal'
 import InputComponent from '../../Jetstream/Input.vue'
 import InputError from '@/Jetstream/InputError'
+import numeral from 'numeral'
 
     export default {
         props: ['tuitions','errors'],
@@ -111,6 +115,8 @@ import InputError from '@/Jetstream/InputError'
                     tuition: [],
                 }),
                 isShow :false,
+                search:'',
+                newTuition: this.tuitions,
                 modal:{
                     tuition : []
                 },
@@ -137,7 +143,16 @@ import InputError from '@/Jetstream/InputError'
                     onFinish: () => this.form.reset(),
 
                 })
-            }
+            },
+            submitSearch:function(){
+                console.log(this.search)    
+                axios.get(route('tuition.where',{'search':this.search})).then(res=>{
+                    console.log(res.data)
+                     this.newTuition = res.data
+                })
+            },
+            changeFormat: (num) => numeral(num).format('0a')
+
         }
         
     }

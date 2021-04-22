@@ -25,12 +25,7 @@
                                 <h5 class="font-bold text-gray-500 text-center lg:text-base sm:text-xs">Payment of The Month</h5>
                             </div>
                         </div>
-                        <div class="flex flex-col items-center">
-                            <h3 class="font-bold lg:text-3xl sm:text-xl">{{ paymentOfTheMonth }}/{{ totalStudent }}</h3>
-                            <h5 class="font-bold text-gray-500 text-center lg:text-base sm:text-xs">Payment of The Month</h5>
-                        </div>
                     </div>
-                </div>
 
                     <div
                         class="flex bg-white overflow-hidden shadow-xl w-full lg:w-1/3 lg:h-1/2 sm:w-1/3 sm:h-1/2 mx-auto lg:p-8 sm:p-8 rounded-xl">
@@ -46,12 +41,7 @@
                                     Year</h5>
                             </div>
                         </div>
-                        <div class="flex flex-col items-center">
-                            <h3 class="font-bold lg:text-3xl sm:text-xl">Rp.{{ paymentOfTheYear }} <span class="text-green-500"><i class="fas fa-caret-up"></i></span></h3>
-                            <h5 class="font-bold text-gray-500 text-center lg:text-base sm:text-xs">Payment of The Year</h5>
-                        </div>
                     </div>
-                </div>
 
                     <div class="flex bg-white overflow-hidden shadow-xl lg:w-1/4 lg:h-1/2 mx-auto lg:p-8 rounded-xl" v-if="$page.props.auth.role == 'admin'">
                         <div class="flex flex-row items-center">
@@ -65,12 +55,7 @@
                                 <h5 class="font-bold text-gray-500 text-center lg:text-base">Officer</h5>
                             </div>
                         </div>
-                        <div class="flex flex-col items-center mx-5">
-                            <h3 class="font-bold text-3xl">{{ totalOfficer }}</h3>
-                            <h5 class="font-bold text-gray-500 text-center lg:text-base">Officer</h5>
-                        </div>
                     </div>
-                </div>
 
                 <div class="flex mx-auto px-10 items-center ">
                     <div class="flex bg-white overflow-hidden w-screen shadow-xl w-5/12 h-1/2 mx-auto p-8 rounded-xl">
@@ -103,6 +88,7 @@
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -113,10 +99,13 @@
 <script>
     import AppLayout from '@/Layouts/AppLayout'
     import Card from '@/Jetstream/Card'
-    import VueApexCharts from 'vue-apexcharts'
+    import ApexCharts from 'vue3-apexcharts'
+    import numeral from 'numeral'
 
     export default {
-        props:['paymentOfTheMonth','paymentOfTheYear','totalStudent','totalOfficer','months','totalPayments','payments'],
+        props: ['paymentOfTheMonth', 'paymentOfTheYear', 'totalStudent', 'totalOfficer', 'months', 'totalPayments',
+            'payments'
+        ],
         components: {
             AppLayout,
             Card,
@@ -156,12 +145,15 @@
                 }, ],
             };
         },
-        methods:{
-            getNominal(month){
-                const data = this.totalPayments.filter(el =>el.month == month)
-                return data.length !== 0  ? data[0].nominal :0
-            }
-            
+        methods: {
+            getNominal(month) {
+                const data = this.totalPayments.filter(el => el.month == month)
+                return data.length !== 0 ? data[0].nominal : 0
+            },
+            changeFormat: (num) => numeral(num).format('0,0')
+
+
         }
     }
+
 </script>

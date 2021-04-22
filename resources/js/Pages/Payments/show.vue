@@ -1,53 +1,144 @@
 <template>
-  <app-layout>
+    <app-layout>
         <template #header>
-        <h1>class Management</h1>
+            <h1>payment Managemnet</h1>
         </template>
-            <div class="">
+        <div class="">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white overflow-hidden shadow-xl w-4/5 mx-auto rounded-lg">
-                    <card title="Show Student " > 
-                        <div class="mx-10 flex mb-5 my-5">
-                            <!-- <img v-bind:src="class.user.profile_photo_path == null ? class.user.profile_photo_url+'&size=512' : '' " class="w-1/4 shadow-lg" :alt=" class.user.name"> -->
-                            <div  class="mx-5">
-                                <h1 class="text-3xl font-bold uppercase">{{classes.level}} {{classes.major.label}} {{classes.label}}  <span class="font-normal"> {{ classes.major.name}} </span></h1>
-                                <h2 class="text-xl capitalize font-thin	"> Students Total{{ classes.major.name}}</h2>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="w-full mt-3">
-                            <div class="flex align-end mx-10  justify-center">
-                            <p class="ml-auto">{{ setFormatDate }}</p>
-                            </div>
-                        </div>
+                <div class="bg-white overflow-hidden shadow-xl w-4/5 mx-auto rounded-lg mb-10">
+                    <card title="payment Management" createLink="payments.create" createPermission="payment.create">
+             
+                        <table-component  :paginationLinks="payments.links" >
+                            <template #header>
+                                <th class="py-3">#</th>
+                                <th class="py-3">Month  - Year</th>
+                                <th class="py-3">Student</th>
+                                <th class="py-3">Officer</th>
+                                <th class="py-3">Nominal</th>
+                                <th class="py-3">Action</th>
+                            </template>
+                            <template #content>
+                                <tr class="border-b border-gray-200 hover:bg-gray-100"
+                                    v-for="(payment,index) in payments.data" :key="payment.id">
+                                    <td class="py-3 px-6 text-center whitespace-nowrap">
+                                        <p class="font-medium text-center">{{ ++index }}</p>
+                                    </td>
+                                  
+                                    <td class="py-3 px-6 text-center whitespace-nowrap">
+                                        <p class="font-medium text-center">{{ payment.month }} - {{payment.year}}  </p>
+                                    </td>
+                                    <td class="py-3 px-6 text-center whitespace-nowrap">
+                                        <p class="font-medium text-center">{{ payment.student.user.name }}</p>
+                                    </td>
+                                    <td class="py-3 px-6 text-center whitespace-nowrap">
+                                        <p class="font-medium text-center">{{ payment.officer.user.name}}</p>
+                                    </td>
+                                   
+                                    <td class="py-3 px-6 text-center whitespace-nowrap">
+                                        <p class="font-medium text-center">{{ payment.tuition.nominal }}</p>
+                                    </td>
+                                
+                                    <td
+                                        class="py-3 px-6 text-center whitespace-nowrap flex items-center justify-around">
+                                      
+                                        
+                                        <button-component type="button"
+                                        @click="showModal(payment)"
+
+                                            class="rounded-full " bg="bg-blue-500 hover:bg-blue-700">
+                                            <i class="fas fa-image"></i>
+                                        </button-component>
+                                    </td>
+                                </tr>
+                            </template>
+                        </table-component>
                     </card>
                 </div>
             </div>
         </div>
-  </app-layout>
+        <dialog-modal :show="isShow" @close="closeModal">
+            <template #title>
+               <p>Show Proof Of Payment  </p> 
+            </template>
+           <template #content>
+            <img :src="  url+'/storage/'+modal.payment.photo_path" alt="">
+
+                </template>
+
+            <template #footer>
+                <button-component bg="bg-gray-400" @click="closeModal">
+                    Closes
+                </button-component>
+
+            </template>
+        </dialog-modal>
+    </app-layout>
 </template>
 
-<script>   
+<script>
     import AppLayout from '@/Layouts/AppLayout'
     import Card from '@/Jetstream/Card'
-    import moment from 'moment'
+    import TableComponent from '@/component/TableComponent'
+    import ButtonComponent from '@/Jetstream/Button'
+import ActionMessage from '@/Jetstream/ActionMessage.vue'
+import DialogModal from '@/Jetstream/DialogModal'
+import InputComponent from '../../Jetstream/Input.vue'
+import InputError from '@/Jetstream/InputError'
 
     export default {
-        computed:{
-            setFormatDate(date){
-                date = this.classes.created_at
-                console.log('date',date);
-                console.log(moment(date));
-                return moment(date).format('D/M/Y ');
-            }
-        },
-        props:['classes'],
+        props: ['payments','errors'],
+
         components: {
             AppLayout,
             Card,
-            moment
+            TableComponent,
+            ButtonComponent,
+                ActionMessage,
+                DialogModal,
+                InputComponent,
+                InputError
         },
+        data(){
+            return{
+                 form:this.$inertia.form( {
+                    _method: 'POST',
+                    payment: [],
+                }),
+                isShow :false,
+                url :'',
+                modal:{
+                    payment : []
+                },
+                
+               
+            }
+        },
+        methods:{
+     
+            showModal(payment){
+                this.modal.payment =  payment
+                // console.log(this.form.payment)
+                this.url = window.location.origin
+                console.log(this.url)
+                this.isShow =true
+            },
+            closeModal() {
+                this.isShow = false
+            },
+                deletepayment() {
+                    console.log(this.form.classs)
+                this.form.delete(route('payments.destroy',this.modal.payment), {
+                    preserveScroll: true,
+                    onSuccess: () => this.closeModal(),
+                    onError: () => this.$refs.password.focus(),
+                    onFinish: () => this.form.reset(),
+
+                })
+            }
+        }
+        
     }
+
 </script>
 
 <style>

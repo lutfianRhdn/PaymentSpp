@@ -18,12 +18,12 @@ createApp({
 })
 .mixin({ methods: { route } })
 .use(InertiaPlugin)
-.mount(el);
+.mount(el); 
 
 // library.add(faUserSecret)
 
 // h.component('font-awesome-icon', FontAwesomeIcon)
 
-h.Vue.config.productionTip = false
+// h.Vue.config.productionTip = false
 
 InertiaProgress.init({ color: '#4B5563' });

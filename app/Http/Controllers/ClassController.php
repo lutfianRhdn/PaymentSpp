@@ -14,6 +14,13 @@ class ClassController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('permission:class.index')->only('index');
+        $this->middleware('permission:class.create')->only('create');
+        $this->middleware('permission:class.update')->only('update');
+        $this->middleware('permission:class.delete')->only('destroy');
+    }
     public function index()
     {
         $classes = Classes::with('students')->with('major')->paginate(5);
@@ -43,7 +50,6 @@ class ClassController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
         $request->validate([
             'level'=>'required',
             'major'=>'required',
@@ -75,8 +81,6 @@ class ClassController extends Controller
     public function edit($id)
     {
         $classes = Classes::find($id);
-        // ddd($classes);
-
         $majors = Major::all();
         return Inertia::render('Class/edit',compact('majors','classes'));
     }
@@ -94,7 +98,6 @@ class ClassController extends Controller
         $classModel = new Classes;
         $classModel->updateClass($request,$class);
         return redirect()->back()->with('successMesage','Class was Successfuly Updated');
-        // dd($request,$class);
     }
 
     /**
@@ -105,13 +108,7 @@ class ClassController extends Controller
      */
     public function destroy($id)
     {
-        // $this->validate(request(),[
-        //     'nis'=>'required'
-        // ]);
-        // $classsNameRequest = request()->className;
-        // dd(request());
         $className = explode(' ',request()->className);
-        // dd($className);
             $class = Classes::where('level',strtolower($className[0]))
             ->where('label',$className[2])
             ->whereHas('major',function($q)use ($className){
@@ -119,12 +116,21 @@ class ClassController extends Controller
             })
                 ->first();
                 $classes = Classes::find($id);
-            // dd($class,$class);
 
         if ($classes->id !== $class->id) {
             return redirect()->back()->swithInput()->withErrors(['ClassName'=>'Class name you entered is wrong']);
         }
         $class->delete();
         return redirect()->back()->with('successMesage','Class was Successfuly Deleted');
+    }
+    // custom
+    public function where()
+    { 
+        $model = new Classes;
+        $result = $model->search(request()->search);
+        foreach ($result as $class ) {
+            $class->studentsTotal = $class->students->count();
+       }
+       return $result;
     }
 }

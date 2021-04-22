@@ -38,4 +38,11 @@ class Tuition extends Model
         ]);
         
     }
+    public function search($keyword)
+    {
+        return Tuition::where(function($query)use($keyword){
+            $query->where('year','LIKE',"%{$keyword}%");
+            $query->orWhere('nominal','LIKE',"%{$keyword}%");
+        })->with('payments')->paginate(100);
+    }
 }

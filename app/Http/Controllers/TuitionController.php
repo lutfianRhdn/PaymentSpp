@@ -14,6 +14,13 @@ class TuitionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('permission:tuition.index')->only('index');
+        $this->middleware('permission:tuition.create')->only('create');
+        $this->middleware('permission:tuition.update')->only('update');
+        $this->middleware('permission:tuition.delete')->only('destroy');
+    }
     private $year;
     public function index()
     {
@@ -21,7 +28,6 @@ class TuitionController extends Controller
         foreach ($tuitions as $tuition ) {
              $tuition->totalPayment = $tuition->payments->count();
         }
-        // dd($tuitions);
         return Inertia::render('Tuitions/index',compact('tuitions'));
     }
 
@@ -78,7 +84,6 @@ class TuitionController extends Controller
      */
     public function edit(tuition $tuition)
     {
-        // dd($tuition);
         return Inertia::render('Tuitions/edit',compact('tuition'));
     }
 
@@ -110,5 +115,14 @@ class TuitionController extends Controller
     {
         $tuition->delete();
         return redirect()->back()->with('successMesage','Tuition was succcessfuly deleted ');
+    }
+    public function where()
+    {
+        $model = new Tuition;
+        $tuitions =$model->search(request()->search);
+        foreach ($tuitions as $tuition ) {
+            $tuition->totalPayment = $tuition->payments->count();
+       }
+       return $tuitions;
     }
 }

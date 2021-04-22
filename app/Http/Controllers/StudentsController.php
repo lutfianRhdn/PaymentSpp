@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Classes;
+use App\Models\Payment;
 use App\Models\Student;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -15,6 +17,13 @@ class StudentsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('permission:user.index')->only('index');
+        $this->middleware('permission:user.create')->only('create');
+        $this->middleware('permission:user.update')->only('update');
+        $this->middleware('permission:user.delete')->only('destroy');
+    }
     public function index()
     {
         $students = Student::with('user')->with('class',function($q){$q->with('major');})->paginate(5);
@@ -28,7 +37,6 @@ class StudentsController extends Controller
      */
     public function create()
     {
-        // dd('ok');
         $classes = Classes::with('major')->get();
         return Inertia::render('Students/create',compact('classes'));
     }
@@ -50,10 +58,8 @@ class StudentsController extends Controller
             'address'=>'required',
             'phone'=>'required'
         ]);
-        // dd($request);
         $userModel =new User;
         $userModel->createStudent($request);
-        // return true;
         return redirect()->route('students.index')->with('successMesage','Student was succcessfuly added ');
     }
 
@@ -65,8 +71,8 @@ class StudentsController extends Controller
      */
     public function show(Student $student)
     {
-        $student = Student::with('user')->with('class',function($q){$q->with('major');})->find($student->id);
-        // dd($student);
+        $student = Student::with('user')->with('class',function($q){$q->with('major');})->with('payments')->find($student->id);
+        
         return Inertia::render('Students/show',compact('student'));
     }
 
@@ -107,8 +113,6 @@ class StudentsController extends Controller
         $userModel = new User;
         $userModel->updateStudent($student,$request);
         return redirect()->back()->with('successMesage','Student was Successfuly Updated');
-
-        // dd($request);
     }
 
     /**
@@ -127,5 +131,40 @@ class StudentsController extends Controller
         }
         $student->user()->delete();
         return redirect()->back()->with('successMesage','Student was Successfuly Deleted');
+    }
+
+    public function where()
+    {
+        $keyword = request('search');
+        $model = new Student;
+        $student = $model->search(request()->search);
+        return $student;
+    }
+    public function calculate($student)
+    {
+        
+        $months =[];
+        $payments = $student->payments()->orderBy('year','ASC')->get() ;
+        foreach ($payments as $payment ) {
+            $month = Carbon::parse("{$payment->month}-{$payment->year}")->format('m-Y');
+            array_push($months,$month);
+        }
+        $now = Carbon::now();
+        $yearMax = Carbon::createFromFormat('m-Y',count($months) == 0 ? $student->created_at->format('m-Y') : max($months))->format('Y');
+        $monthMax  = (int)Carbon::createFromFormat('m-Y',count($months) == 0 ? $student->created_at->format('m-Y') : max($months) )->format('m');
+        $test = [];
+        for($i = $yearMax;$i <= $now->format('Y');$i++){
+            for ($j=1; $j <= 12; $j++) {
+                $month =Carbon::createFromFormat('m-Y',"{$j}-{$i}");
+                $data = $student->payments()->where('year',$i)->where('month',$month->format('F'))->get();
+                if($data->count() == 0){
+                    array_push($test,$monthMax);
+                    $monthMax +=1;
+                }
+            }
+        }
+        $arrears = $monthMax;
+        dd($test);
+        dd($arrears,$yearMax,max($months));
     }
 }
